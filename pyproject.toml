@@ -39,3 +39,5 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.6.2"
 pyTelegramBotAPI = "^4.10.0"
+logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.1" }
+vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v1.1.1" }

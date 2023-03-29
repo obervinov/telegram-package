@@ -41,7 +41,7 @@ class TelegramBot:
         self,
         names: list = None,
         size: int = None
-    ) -> str:
+    ) -> telebot.types.InlineKeyboardButton:
         """
         Method for generating inline keyboard button according to the specified parameters.
 
@@ -63,3 +63,4 @@ class TelegramBot:
             )
         for step in range(0, len(buttons), size):
             markup.row(*buttons[step:step+size])
+        return markup
