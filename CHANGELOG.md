@@ -19,7 +19,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 * added a new method [`create_inline_buttons()`](https://github.com/obervinov/telegram-package/blob/v1.0.2/telegram/telegram.py#L40) to create online keyboard buttons sent by the bot
 #### 🚀 Features
 * updated [GitHub Actions](https://github.com/obervinov/_templates/tree/v1.0.2) version to `v1.0.2`
-* added [tests](https://github.com/obervinov/telegram-package/tree/v1.0.2/tests)
+* added [Tests](https://github.com/obervinov/telegram-package/tree/v1.0.2/tests)
 * added logging events
 
 

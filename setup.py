@@ -37,7 +37,7 @@ setup(
     keywords=['telegram', 'bot'],
     install_requires=[
         'pyTelegramBotAPI==4.10.0'
-    ]
+    ],
     dependency_links=[
         'https://github.com/obervinov/logger-package/tarball/master#egg=logger-1.0.1'
         'https://github.com/obervinov/vault-package/tarball/master#egg=vault-1.1.1'
