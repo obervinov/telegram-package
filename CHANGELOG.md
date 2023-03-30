@@ -4,6 +4,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 
+## v1.1.0 - 2023-03-29
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.0.1...v1.1.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/2
+#### 🐛 Bug Fixes
+* renamed the directory with the code to the name of the module - `telegram`
+* fixed errors in the doc string and the general code format
+#### 📚 Documentation
+* updated and expanded the documentation in the file [README.md](https://github.com/obervinov/telegram-package/blob/v1.0.2/README.md)
+#### 💥 Breaking Changes
+* [changed the structure](https://github.com/obervinov/telegram-package/tree/v1.0.2#-data-structure-in-vault) of storing **bot token**
+* removed `bot_name` argument in `TelegramBot.__init__`
+* renamed argument `vault` -> `vault_client` and added new `parse_mode` in method `__init__()`
+* added a new method [`create_inline_markup()`](https://github.com/obervinov/telegram-package/blob/v1.0.2/telegram/telegram.py#L40) to create online keyboard buttons sent by the bot
+#### 🚀 Features
+* updated [GitHub Actions](https://github.com/obervinov/_templates/tree/v1.0.2) version to `v1.0.2`
+* added [Tests](https://github.com/obervinov/telegram-package/tree/v1.0.2/tests)
+
+
+
 ## v1.0.1 - 2023-03-02
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.0.0...v1.0.1 by @obervinov in https://github.com/obervinov/telegram-package/pull/1

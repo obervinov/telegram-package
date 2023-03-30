@@ -8,15 +8,15 @@ with open('CHANGELOG.md', 'r', encoding='utf8') as changelog:
 
 setup(
     name='telegram',
-    version='1.0.1',
+    version='1.1.0',
     license='MIT',
     description=(
-        "This is an additional implementation over the telebot module."
-        "This module is designed for fast initialization"
-        "and authorization of bot telegrams in the telegram api."
+        "This is an additional implementation compared to the telebot module."
+        "This module is designed for quick initialization, authorization"
+        "and rendering of various buttons/widgets for telegram bot."
     ),
     py_modules=["telegram"],
-    package_dir={'': 'src'},
+    package_dir={'': 'telegram'},
     author='Oleg Bervinov',
     author_email='obervinov@pm.me',
     long_description=(f"{readme_content}""\n\n"f"{changelog_content}"),
@@ -37,5 +37,9 @@ setup(
     keywords=['telegram', 'bot'],
     install_requires=[
         'pyTelegramBotAPI==4.10.0'
+    ],
+    dependency_links=[
+        'https://github.com/obervinov/logger-package/tarball/master#egg=logger-1.0.1'
+        'https://github.com/obervinov/vault-package/tarball/master#egg=vault-1.1.1'
     ]
 )

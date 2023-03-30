@@ -10,19 +10,50 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/obervinov/telegram-package?style=for-the-badge)
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/book.png" width="25" title="about"> About this project
-This is an additional implementation over the **telebot** module.
+This is an additional implementation compared to the **telebot** module.
 
-This module is designed for fast initialization and authorization of bot telegrams in the telegram api.
+This module is designed for quick initialization, authorization and rendering of various _buttons/widgets_ for telegram bot.
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
 | Name  | Version |
 | ------------------------ | ----------- |
-| GitHub Actions Templates | [v1.0.1](https://github.com/obervinov/_templates/tree/v1.0.1) |
+| GitHub Actions Templates | [v1.0.2](https://github.com/obervinov/_templates/tree/v1.0.2) |
 
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Supported functions
-- Authentication in api telegram
-- Download `telebot.types`
+- Creating a connection to the telegram api and initializing the objects necessary for the bot to function (_parser_, _format_, _types_, _etc_)
+- Generating an inline keyboard button with a matrix of the specified size from the passed elements
+
+## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Data structure in Vault
+The structure of storing the bot token in the **Vault**
+```bash
+# token data
+ % vault kv get configuration/telegram
+========= Secret Path =========
+configuration/data/telegram
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2023-03-26T08:00:00.000000000Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+
+====== Data ======
+Key         Value
+---         -----
+token       abc123456qwerty
+```
+
+
+The `policy` required by the module when interacting with **Vault**
+```bash
+path "${mount_point}/configuration/data/telegram" {
+  capabilities = ["read", "list"]
+}
+```
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/stack2.png" width="20" title="install"> Installing
 ```bash
@@ -35,22 +66,46 @@ pip3 install git+https://github.com/obervinov/telegram-package.git@v1.0.0#egg=va
 ```
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/config.png" width="25" title="usage"> Usage example
+ Simple
 ```python
-"""Import module"""
+# import module
 from telegram import TelegramBot
 
-"""Environment variables"""
-bot_name = os.environ.get('BOT_NAME', 'pyinstabot-downloader')
+# init class objects
+telegram_bot = TelegramBot(vault_client).telegram_bot
 
-"""Init class"""
-Telegram = TelegramBot(bot_name, Vault)
-telegram_bot = Telegram.telegram_bot
-
-"""Decorators"""
+# decorator
 @telegram_bot.message_handler(commands=['start'])
 def start_message(message):
-    answer = (
-        f"Hi, <b>{message.chat.username}</b>! \u270B\n"
-    )
-    telegram_bot.send_message(message.chat.id, answer)  
+    telegram_bot.send_message(
+        message.chat.id,
+        f"Hi, <b>{message.chat.username}</b>! \u270B"
+    )  
 ```
+
+Inline keyboard
+```python
+# import module
+from telegram import TelegramBot
+
+# init class objects
+telegram_bot = TelegramBot(vault_client).telegram_bot
+
+# decorator
+@telegram_bot.message_handler(commands=['start'])
+def start_message(message):
+    markup = telegram_bot.create_inline_buttons(
+        [
+            'Jan', 'Feb', 'Mar', 'Apr',
+            'May', 'June', 'July', 'Aug',
+            'Sept', 'Oct', 'Nov', 'Dec'
+        ],
+        4
+    )
+    telegram_bot.send_message(
+        message.chat.id,
+        f"\U0001F4C5 Select month for the creating report",
+        reply_markup=markup
+    )
+```
+<img src="https://github.com/obervinov/telegram-assistent/blob/main/doc/inline_keyboard_example.png" width="350" title="inline_keyboard_example">
