@@ -12,7 +12,7 @@
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/book.png" width="25" title="about"> About this project
 This is an additional implementation compared to the **telebot** module.
 
-This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bot.
+This module is designed for quick initialization, authorization and rendering of various _buttons/widgets_ for telegram bot.
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
 | Name  | Version |
@@ -21,7 +21,7 @@ This module is designed for quick initialization, authorization and rendering of
 
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Supported functions
-- Creating a connection to the telegram api and initializing the objects necessary for the bot to function (__parser__, __format__, __types__, __etc__)
+- Creating a connection to the telegram api and initializing the objects necessary for the bot to function (_parser_, _format_, _types_, _etc_)
 - Generating an inline keyboard button with a matrix of the specified size from the passed elements
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Data structure in Vault
