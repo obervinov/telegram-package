@@ -16,11 +16,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 * [changed the structure](https://github.com/obervinov/telegram-package/tree/v1.0.2#-data-structure-in-vault) of storing **bot token**
 * removed `bot_name` argument in `TelegramBot.__init__`
 * renamed argument `vault` -> `vault_client` and added new `parse_mode` in method `__init__()`
-* added a new method [`create_inline_buttons()`](https://github.com/obervinov/telegram-package/blob/v1.0.2/telegram/telegram.py#L40) to create online keyboard buttons sent by the bot
+* added a new method [`create_inline_markup()`](https://github.com/obervinov/telegram-package/blob/v1.0.2/telegram/telegram.py#L40) to create online keyboard buttons sent by the bot
 #### 🚀 Features
 * updated [GitHub Actions](https://github.com/obervinov/_templates/tree/v1.0.2) version to `v1.0.2`
 * added [Tests](https://github.com/obervinov/telegram-package/tree/v1.0.2/tests)
-* added logging events
 
 
 

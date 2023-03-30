@@ -37,11 +37,11 @@ class TelegramBot:
         self.telegram_types = telebot.types
 
 
-    def create_inline_buttons(
+    def create_inline_markup(
         self,
         names: list = None,
         size: int = None
-    ) -> telebot.types.InlineKeyboardButton:
+    ) -> telebot.types.InlineKeyboardMarkup:
         """
         Method for generating inline keyboard button according to the specified parameters.
 

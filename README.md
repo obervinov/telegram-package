@@ -21,7 +21,7 @@ This module is designed for quick initialization, authorization and rendering of
 
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Supported functions
-- Creating a connection to the telegram api and initializing the objects necessary for the bot to function (parser, format, types ... etc)
+- Creating a connection to the telegram api and initializing the objects necessary for the bot to function (__parser__, __format__, __types__, __etc__)
 - Generating an inline keyboard button with a matrix of the specified size from the passed elements
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Data structure in Vault
@@ -108,4 +108,4 @@ def start_message(message):
         reply_markup=markup
     )
 ```
-<img src="https://github.com/obervinov/telegram-assistent/blob/main/doc/inline_keyboard_example.png" width="250" title="inline_keyboard_example">
+<img src="https://github.com/obervinov/telegram-assistent/blob/main/doc/inline_keyboard_example.png" width="350" title="inline_keyboard_example">
