@@ -4,9 +4,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 
 
-## v1.0.2 - 2023-03-29
+## v1.1.0 - 2023-03-29
 ### What's Changed
-**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.0.1...v1.0.2 by @obervinov in https://github.com/obervinov/telegram-package/pull/2
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.0.1...v1.1.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/2
 #### 🐛 Bug Fixes
 * renamed the directory with the code to the name of the module - `telegram`
 * fixed errors in the doc string and the general code format

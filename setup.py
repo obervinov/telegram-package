@@ -8,7 +8,7 @@ with open('CHANGELOG.md', 'r', encoding='utf8') as changelog:
 
 setup(
     name='telegram',
-    version='1.0.2',
+    version='1.1.0',
     license='MIT',
     description=(
         "This is an additional implementation compared to the telebot module."
