@@ -108,4 +108,4 @@ def start_message(message):
         reply_markup=markup
     )
 ```
-<img src="https://github.com/obervinov/telegram-assistent/blob/main/doc/inline_keyboard_example.png" width="350" title="inline_keyboard_example">
+<img src="https://github.com/obervinov/telegram-package/blob/main/doc/inline_keyboard_example.png" width="750" title="inline_keyboard_example">
