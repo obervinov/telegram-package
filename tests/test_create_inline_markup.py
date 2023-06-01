@@ -7,7 +7,7 @@ from telegram.telegram import TelegramBot
 mock_vault = Mock()
 telegram_client = TelegramBot(mock_vault)
 
-buttons_list = [
+test_buttons_list = [
     'Jan', 'Feb', 'Mar', 'Apr',
     'May', 'June', 'July', 'Aug',
     'Sept', 'Oct', 'Nov', 'Dec'
@@ -18,11 +18,10 @@ def test_create_inline_markup_3(
     size: int = 3
 ):
     """
-    The function checks that the returned inline keyboard markup object
-    matches the specified parameters.
+    A test to check whether the returned object matches the passed keyboard size: 3
     """
     markup = telegram_client.create_inline_markup(
-        buttons_list,
+        test_buttons_list,
         size
     )
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
@@ -34,11 +33,10 @@ def test_create_inline_markup_4(
     size: int = 4
 ):
     """
-    The function checks that the returned inline keyboard markup object
-    matches the specified parameters.
+    A test to check whether the returned object matches the passed keyboard size: 4
     """
     markup = telegram_client.create_inline_markup(
-        buttons_list,
+        test_buttons_list,
         size
     )
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
