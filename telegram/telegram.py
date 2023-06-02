@@ -18,7 +18,7 @@ class TelegramBot:
     ) -> None:
         """
         A method for create a new telebot client instance.
-        
+
         Args:
             :param vault (object): an instance with the vault client to receive a private token.
             :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
