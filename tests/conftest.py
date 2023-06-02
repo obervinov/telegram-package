@@ -57,6 +57,12 @@ def fixture_vault(url, name, policy_path):
 @pytest.fixture(name="telegram_client", scope='session')
 def fixture_telegram_client(vault):
     """Returns telegram client with vault"""
+    response = vault.write_secret(
+        path='configuration/telegram',
+        key='token',
+        value='qwerty123'
+    )
+    print(f"Prepared test data status: {response}")
     return TelegramBot(
         vault=vault
     )

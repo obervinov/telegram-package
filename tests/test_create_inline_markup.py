@@ -32,4 +32,3 @@ def test_create_inline_markup_4(telegram_client):
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
     for row in markup.keyboard:
         assert len(row) == 4
-
