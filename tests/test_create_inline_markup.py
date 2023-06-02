@@ -1,11 +1,13 @@
 """
 This test is necessary to check the returned markup buttons.
 """
+
 test_buttons_list = [
     'Jan', 'Feb', 'Mar', 'Apr',
     'May', 'June', 'July', 'Aug',
     'Sept', 'Oct', 'Nov', 'Dec'
 ]
+
 
 def test_extract_token(telegram_client):
     """
@@ -13,6 +15,7 @@ def test_extract_token(telegram_client):
     """
     assert isinstance(telegram_client.token, str)
     assert telegram_client.token
+
 
 def test_create_inline_markup_3(telegram_client):
     """
