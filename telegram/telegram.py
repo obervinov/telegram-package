@@ -1,32 +1,31 @@
 """
 This is an additional implementation compared to the telebot module.
 This module is designed for quick initialization, authorization
-and rendering of various buttons/widgets for telegram bot.
+and rendering of various buttons/widgets for telegram bots.
 """
 import telebot
 
 class TelegramBot:
     """
-    This class is an implementation over the telebot module.
-    Contains methods for quick initialization, authorization
-    and rendering of various buttons/widgets for telegram bot.
+    This class contains methods for quick initialization, authorization
+    and rendering of various buttons/widgets for telegram bots.
     """
     def __init__(
         self,
-        vault_client: object = None,
+        vault: object = None,
         parse_mode: str = 'HTML'
     ) -> None:
         """
         A method for create a new telebot client instance.
         
-        :param vault_client: An instance with the vault client to receive a private token.
-        :type vault_client: object
-        :default vault_client: None
-        :param parse_mode: Message parser. It can be HTML or MARKDOWN.
-        :type parse_mode: str
-        :default parse_mode: HTML
+        Args:
+            :param vault (object): an instance with the vault client to receive a private token.
+            :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
+
+        Returns:
+            None
         """
-        self.token = vault_client.vault_read_secrets(
+        self.token = vault.read_secret(
             'configuration/telegram',
             "token"
         )
@@ -35,7 +34,6 @@ class TelegramBot:
             parse_mode=parse_mode
         )
         self.telegram_types = telebot.types
-
 
     def create_inline_markup(
         self,
