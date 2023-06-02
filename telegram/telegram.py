@@ -5,6 +5,7 @@ and rendering of various buttons/widgets for telegram bots.
 """
 import telebot
 
+
 class TelegramBot:
     """
     This class contains methods for quick initialization, authorization

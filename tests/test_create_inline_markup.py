@@ -15,7 +15,7 @@ def test_create_inline_markup_3(telegram_client):
     markup = telegram_client.create_inline_markup(
         test_buttons_list,
         3
-)
+    )
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
     for row in markup.keyboard:
         assert len(row) == 3
