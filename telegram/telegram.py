@@ -49,7 +49,7 @@ class TelegramBot:
             :param size (int): number of buttons per line.
 
         Returns:
-            (telebot.types.InlineKeyboardMarkup) markup_rows
+            (telebot.types.InlineKeyboardMarkup) buttons
         """
         markup = self.telegram_types.InlineKeyboardMarkup()
         buttons = []
