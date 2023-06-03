@@ -42,14 +42,14 @@ class TelegramBot:
         size: int = None
     ) -> telebot.types.InlineKeyboardMarkup:
         """
-        Method for generating inline keyboard button according to the specified parameters.
+        A method for generating inline keyboard button according to the specified parameters.
 
-        :param names: The name of the buttons in the form of a list for generating markup.
-        :type names: list
-        :default names: None
-        :param size: Number of buttons per line.
-        :type size: int
-        :default size: None
+        Args:
+            :param names (list): the name of the buttons in the form of a list.
+            :param size (int): number of buttons per line.
+
+        Returns:
+            (telebot.types.InlineKeyboardMarkup) markup_rows
         """
         markup = self.telegram_types.InlineKeyboardMarkup()
         buttons = []
