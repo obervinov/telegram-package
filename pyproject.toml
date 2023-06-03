@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "telegram"
-version = "1.1.0"
-description = "This is an additional implementation compared to the telebot module. This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bot."
+version = "1.1.1"
+description = "This is an additional implementation compared to the telebot module. This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bots."
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.9"
@@ -38,6 +38,6 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6.2"
-pyTelegramBotAPI = "^4.10.0"
+pyTelegramBotAPI = "^4.12.0"
 logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.1" }
-vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v1.1.1" }
+vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v2.0.0" }

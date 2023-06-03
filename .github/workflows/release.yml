@@ -1,9 +1,15 @@
-name: Create release
+name: Create GitHub Release
 
 on:
+  workflow_run:
+    workflows: ["Tests and Checks"]
+    branches: [main]
+    types: 
+      - completed
   push:
     branches: [main]
+    paths: ['users/**']
 
 jobs:
   create-release:
-    uses: obervinov/_templates/.github/workflows/release.yml@v1.0.2
+    uses: obervinov/_templates/.github/workflows/create.release.yml@v1.0.4

@@ -1,46 +1,43 @@
 """
 This test is necessary to check the returned markup buttons.
 """
-from unittest.mock import Mock
-from telegram.telegram import TelegramBot
 
-mock_vault = Mock()
-telegram_client = TelegramBot(mock_vault)
-
-buttons_list = [
+test_buttons_list = [
     'Jan', 'Feb', 'Mar', 'Apr',
     'May', 'June', 'July', 'Aug',
     'Sept', 'Oct', 'Nov', 'Dec'
 ]
 
 
-def test_create_inline_markup_3(
-    size: int = 3
-):
+def test_extract_token(telegram_client):
     """
-    The function checks that the returned inline keyboard markup object
-    matches the specified parameters.
+    A test to verify the extraction of the telegram token
+    """
+    assert isinstance(telegram_client.token, str)
+    assert telegram_client.token
+
+
+def test_create_inline_markup_3(telegram_client):
+    """
+    A test to check whether the returned object matches the passed keyboard size: 3
     """
     markup = telegram_client.create_inline_markup(
-        buttons_list,
-        size
+        test_buttons_list,
+        3
     )
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
     for row in markup.keyboard:
-        assert len(row) == size
+        assert len(row) == 3
 
 
-def test_create_inline_markup_4(
-    size: int = 4
-):
+def test_create_inline_markup_4(telegram_client):
     """
-    The function checks that the returned inline keyboard markup object
-    matches the specified parameters.
+    A test to check whether the returned object matches the passed keyboard size: 4
     """
     markup = telegram_client.create_inline_markup(
-        buttons_list,
-        size
+        test_buttons_list,
+        4
     )
     assert isinstance(markup, telegram_client.telegram_types.InlineKeyboardMarkup)
     for row in markup.keyboard:
-        assert len(row) == size
+        assert len(row) == 4

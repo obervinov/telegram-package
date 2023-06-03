@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## v1.1.1 - 2023-06-03
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.0...v1.1.1 by @obervinov in https://github.com/obervinov/telegram-package/pull/11
+#### 🐛 Bug Fixes
+* [Fixed install_requires and dependency_links in setup.py](https://github.com/obervinov/telegram-package/issues/8)
+#### 📚 Documentation
+* [Updated documentation: PR template](https://github.com/obervinov/telegram-package/issues/10)
+#### 🚀 Features
+* [Bumped telebot dependency version to 4.12.0](https://github.com/obervinov/telegram-package/issues/12)
+* [Rewrited tests for this module](https://github.com/obervinov/telegram-package/issues/5)
+* [Updated workflows for this module: tests, checks, dependencies and create release](https://github.com/obervinov/telegram-package/issues/6)
+* [Added support for the new version of the vault-package:v2.0.0 ](https://github.com/obervinov/telegram-package/issues/7)
+
 
 ## v1.1.0 - 2023-03-29
 ### What's Changed

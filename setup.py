@@ -1,4 +1,6 @@
-"""This module is necessary to distribute and install the written module via pip"""
+"""
+This module is necessary to distribute and install the written module via pip
+"""
 from setuptools import setup
 
 with open('README.md', 'r', encoding='utf8') as readme:
@@ -8,12 +10,12 @@ with open('CHANGELOG.md', 'r', encoding='utf8') as changelog:
 
 setup(
     name='telegram',
-    version='1.1.0',
+    version='1.1.1',
     license='MIT',
     description=(
         "This is an additional implementation compared to the telebot module."
         "This module is designed for quick initialization, authorization"
-        "and rendering of various buttons/widgets for telegram bot."
+        "and rendering of various buttons/widgets for telegram bots."
     ),
     py_modules=["telegram"],
     package_dir={'': 'telegram'},
@@ -36,10 +38,12 @@ setup(
     ],
     keywords=['telegram', 'bot'],
     install_requires=[
-        'pyTelegramBotAPI==4.10.0'
+        'pyTelegramBotAPI==4.12.0',
+        'logger @ https://github.com/obervinov/logger-package/tarball/v1.0.1#egg=logger-1.0.1',
+        'vault @ https://github.com/obervinov/vault-package/tarball/v2.0.0#egg=vault-2.0.0',
     ],
     dependency_links=[
-        'https://github.com/obervinov/logger-package/tarball/master#egg=logger-1.0.1'
-        'https://github.com/obervinov/vault-package/tarball/master#egg=vault-1.1.1'
+        'https://github.com/obervinov/logger-package/tarball/v1.0.1#egg=logger-1.0.1'
+        'https://github.com/obervinov/vault-package/tarball/v2.0.0#egg=vault-2.0.0'
     ]
 )
