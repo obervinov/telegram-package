@@ -28,7 +28,7 @@ This module is designed for quick initialization, authorization and rendering of
 The structure of storing the bot token in the **Vault**
 ```bash
 # token data
- % vault kv get configuration/telegram
+ % vault kv get ${mount_point}/configuration/telegram
 ========= Secret Path =========
 configuration/data/telegram
 
@@ -44,16 +44,12 @@ version            1
 ====== Data ======
 Key         Value
 ---         -----
-token       abc123456qwerty
+token       123456qwerty
 ```
 
 
 The `policy` required by the module when interacting with **Vault**
-```bash
-path "${mount_point}/configuration/data/telegram" {
-  capabilities = ["read", "list"]
-}
-```
+An example of a policy with all the necessary rights and a description can be found [here](tests/vault/policy.hcl)
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/stack2.png" width="20" title="install"> Installing
 ```bash

@@ -9,12 +9,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 #### 🐛 Bug Fixes
 * [Fixed install_requires and dependency_links in setup.py](https://github.com/obervinov/telegram-package/issues/8)
 #### 📚 Documentation
-* [Update documentation: PR template](https://github.com/obervinov/telegram-package/issues/10)
+* [Updated documentation: PR template](https://github.com/obervinov/telegram-package/issues/10)
 #### 🚀 Features
-* [Bump telebot dependency version to 4.12.0](https://github.com/obervinov/telegram-package/issues/12)
-* [Rewrite tests for this module](https://github.com/obervinov/telegram-package/issues/5)
-* [Update workflows for this module: tests, checks, dependencies and create release](https://github.com/obervinov/telegram-package/issues/6)
-* [Add support for the new version of the vault-package:v2.0.0 ](https://github.com/obervinov/telegram-package/issues/7)
+* [Bumped telebot dependency version to 4.12.0](https://github.com/obervinov/telegram-package/issues/12)
+* [Rewrited tests for this module](https://github.com/obervinov/telegram-package/issues/5)
+* [Updated workflows for this module: tests, checks, dependencies and create release](https://github.com/obervinov/telegram-package/issues/6)
+* [Added support for the new version of the vault-package:v2.0.0 ](https://github.com/obervinov/telegram-package/issues/7)
 
 
 ## v1.1.0 - 2023-03-29
