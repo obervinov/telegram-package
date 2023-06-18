@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## v1.1.2 - 2023-06-18
 ### What's Changed
-**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.1...v1.1.2 by @obervinov in https://github.com/obervinov/telegram-package/pull/
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.1...v1.1.2 by @obervinov in https://github.com/obervinov/telegram-package/pull/14
 #### 🐛 Bug Fixes
 * [Fix work with transit dependencies in setup.py](https://github.com/obervinov/telegram-package/issues/13)
 
