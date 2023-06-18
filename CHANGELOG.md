@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## v1.1.2 - 2023-06-18
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.1...v1.1.2 by @obervinov in https://github.com/obervinov/telegram-package/pull/
+#### 🐛 Bug Fixes
+* [Fix work with transit dependencies in setup.py](https://github.com/obervinov/telegram-package/issues/13)
+
+
 ## v1.1.1 - 2023-06-03
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.0...v1.1.1 by @obervinov in https://github.com/obervinov/telegram-package/pull/11

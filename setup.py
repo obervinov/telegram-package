@@ -10,7 +10,7 @@ with open('CHANGELOG.md', 'r', encoding='utf8') as changelog:
 
 setup(
     name='telegram',
-    version='1.1.1',
+    version='1.1.2',
     license='MIT',
     description=(
         "This is an additional implementation compared to the telebot module."
@@ -27,23 +27,15 @@ setup(
     include_package_data=True,
     classifiers=[
         "License :: OSI Approved :: MIT License",
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
-        'Programming Language :: Python :: 3.11',
-        'Operating System :: OS Independent'
+        "Programming Language :: Python :: 3.10",
+        "Operating System :: OS Independent",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development"
     ],
     keywords=['telegram', 'bot'],
     install_requires=[
         'pyTelegramBotAPI==4.12.0',
-        'logger @ https://github.com/obervinov/logger-package/tarball/v1.0.1#egg=logger-1.0.1',
-        'vault @ https://github.com/obervinov/vault-package/tarball/v2.0.0#egg=vault-2.0.0',
-    ],
-    dependency_links=[
-        'https://github.com/obervinov/logger-package/tarball/v1.0.1#egg=logger-1.0.1'
-        'https://github.com/obervinov/vault-package/tarball/v2.0.0#egg=vault-2.0.0'
+        'logger @ git+https://github.com/obervinov/logger-package.git@v1.0.1',
+        'vault @ git+https://github.com/obervinov/vault-package.git@v2.0.0',
     ]
 )
