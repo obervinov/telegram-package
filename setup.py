@@ -10,7 +10,7 @@ with open('CHANGELOG.md', 'r', encoding='utf8') as changelog:
 
 setup(
     name='telegram',
-    version='1.1.2',
+    version='1.1.3',
     license='MIT',
     description=(
         "This is an additional implementation compared to the telebot module."
@@ -36,6 +36,6 @@ setup(
     install_requires=[
         'pyTelegramBotAPI==4.12.0',
         'logger @ git+https://github.com/obervinov/logger-package.git@v1.0.1',
-        'vault @ git+https://github.com/obervinov/vault-package.git@v2.0.0',
+        'vault @ git+https://github.com/obervinov/vault-package.git@v2.0.1',
     ]
 )
