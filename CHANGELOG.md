@@ -2,7 +2,6 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-
 ## v1.1.3 - 2023-06-20
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.2...v1.1.3 by @obervinov in https://github.com/obervinov/telegram-package/pull/18
