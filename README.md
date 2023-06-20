@@ -1,7 +1,7 @@
 # Telegram Package
 [![Release](https://github.com/obervinov/telegram-package/actions/workflows/release.yml/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/release.yml)
 [![CodeQL](https://github.com/obervinov/telegram-package/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/github-code-scanning/codeql)
-[![Tests and checks](https://github.com/obervinov/telegram-package/actions/workflows/tests.yml/badge.svg?branch=main&event=pull_request)](https://github.com/obervinov/telegram-package/actions/workflows/tests.yml)
+[![Tests and checks](https://github.com/obervinov/telegram-package/actions/workflows/tests.yml/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/tests.yml)
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/obervinov/telegram-package?style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/obervinov/telegram-package?style=for-the-badge)
