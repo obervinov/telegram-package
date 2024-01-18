@@ -90,7 +90,7 @@ telegram_bot = TelegramBot(vault_client).telegram_bot
 # decorator
 @telegram_bot.message_handler(commands=['start'])
 def start_message(message):
-    markup = telegram_bot.create_inline_buttons(
+    markup = telegram_bot.telegram.create_inline_markup(
         [
             'Jan', 'Feb', 'Mar', 'Apr',
             'May', 'June', 'July', 'Aug',

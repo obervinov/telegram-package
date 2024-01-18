@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.2...v1.1.3 by @obervinov in https://github.com/obervinov/telegram-package/pull/18
 #### 🐛 Bug Fixes
 * [Fix badge with tests in README.md](https://github.com/obervinov/telegram-package/issues/15)
-* [Bump vault-package to v2.0.1](https://github.com/obervinov/telegram-package/issues/17)
-#### 🚀 Features
 * [Fix the error that caused the workflow create_release to run twice - at pr/main](https://github.com/obervinov/telegram-package/issues/16)
+#### 🚀 Features
+* [Bump vault-package to v2.0.1](https://github.com/obervinov/telegram-package/issues/17)
 
 
 ## v1.1.2 - 2023-06-18
