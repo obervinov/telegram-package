@@ -1,7 +1,7 @@
 # Telegram Package
 [![Release](https://github.com/obervinov/telegram-package/actions/workflows/release.yaml/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/release.yaml)
 [![CodeQL](https://github.com/obervinov/telegram-package/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/github-code-scanning/codeql)
-[![Tests and checks](https://github.com/obervinov/telegram-package/actions/workflows/tests.yaml/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/tests.yaml)
+[![Tests and checks](https://github.com/obervinov/telegram-package/actions/workflows/pr.yaml/badge.svg)](https://github.com/obervinov/telegram-package/actions/workflows/pr.yaml)
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/obervinov/telegram-package?style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/obervinov/telegram-package?style=for-the-badge)
@@ -17,7 +17,7 @@ This module is designed for quick initialization, authorization and rendering of
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
 | Name  | Version |
 | ------------------------ | ----------- |
-| GitHub Actions Templates | [v1.0.4](https://github.com/obervinov/_templates/tree/v1.0.4) |
+| GitHub Actions Templates | [v1.0.12](https://github.com/obervinov/_templates/tree/v1.0.12) |
 
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Supported functions
