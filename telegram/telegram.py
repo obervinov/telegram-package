@@ -3,6 +3,7 @@ This is an additional implementation compared to the telebot module.
 This module is designed for quick initialization, authorization
 and rendering of various buttons/widgets for telegram bots.
 """
+import time
 import telebot
 from telebot.apihelper import ApiTelegramException
 from messages import Messages
@@ -16,6 +17,7 @@ class TelegramBot:
     """
     def __init__(
         self,
+        name: str = None,
         vault: object = None,
         parse_mode: str = 'HTML',
         messages_config: str = None
@@ -24,6 +26,7 @@ class TelegramBot:
         A method for create a new telebot client instance.
 
         Args:
+            :param name (str): the name of the bot.
             :param vault (object): an instance with the vault client to receive a private token.
             :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
             :param messages_config (str): path to the messages configuration file with templates.
@@ -31,6 +34,7 @@ class TelegramBot:
         Returns:
             None
         """
+        self.name = name
         self.token = vault.read_secret(
             'configuration/telegram',
             "token"
@@ -111,3 +115,29 @@ class TelegramBot:
             response = None
 
         return response
+
+    def launch_bot(self) -> None:
+        """
+        A method for start pulling the message with logging and exceptions.
+
+        Returns:
+            None
+        """
+        attempt_timeout = 60
+        while True:
+            log.info(
+                '[Bot]: Starting bot %s...',
+                self.name
+            )
+            try:
+                self.telegram_bot.polling(
+                    timeout=attempt_timeout
+                )
+            except self.api_telegram_exception as exception:
+                log.error(
+                    '[Bot]: Error polling messages: %s\n'
+                    'Next attempt in %s seconds...',
+                    exception,
+                    attempt_timeout
+                )
+                time.sleep(attempt_timeout)
