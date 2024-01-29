@@ -81,7 +81,8 @@ class TelegramBot:
         self,
         chat_id: str = None,
         messages_template: dict = None,
-        reply_markup: telebot.types.InlineKeyboardMarkup = None
+        reply_markup: telebot.types.InlineKeyboardMarkup = None,
+        progressbar: dict = None
     ) -> telebot.types.Message:
         """
         Send a formatted, beautiful message from the Messages text templates.
@@ -93,15 +94,28 @@ class TelegramBot:
                     - alias (str): The alias of the template to use.
                     - kwargs (dict): A dictionary containing any keyword arguments to be passed to the template.
             reply_markup (telebot.types.InlineKeyboardMarkup): The inline keyboard markup to be sent with the message.
+            progressbar (dict): A dictionary containing the progress bar parameters.
+                The dictionary should contain the following keys:
+                    - current (int): The current value of the progress bar.
+                    - total (int): The total value of the progress bar.
 
         Returns:
             telegram.telegram_types.Message: The message sent to the user.
         """
         try:
+            if progressbar:
+                progressbar_string = self.messages.render_progressbar(
+                    total_count=progressbar['total'],
+                    current_count=progressbar['current']
+                )
+            else:
+                progressbar_string = None
+
             response = self.telegram_bot.send_message(
                 chat_id=chat_id,
                 text=self.messages.render_template(
                     template_alias=messages_template['alias'],
+                    progressbar=progressbar_string,
                     **messages_template.get('kwargs', {})
                 ),
                 reply_markup=reply_markup,
