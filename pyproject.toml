@@ -18,10 +18,10 @@ include = ["CHANGELOG.md"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyTelegramBotAPI = "^4.12.0"
-logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.4" }
-vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v2.0.2" }
-messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v1.0.2" }
+pyTelegramBotAPI = "^4"
+logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1" }
+vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v2" }
+messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v1" }
 
 [build-system]
 requires = ["poetry-core"]
