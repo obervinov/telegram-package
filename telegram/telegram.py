@@ -45,6 +45,7 @@ class TelegramBot:
         )
         self.telegram_types = telebot.types
         self.api_telegram_exception = ApiTelegramException
+        self.callback_query = telebot.types.CallbackQuery
         self.messages = Messages(
             config_path=messages_config
         )
