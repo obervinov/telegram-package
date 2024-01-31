@@ -4,4 +4,8 @@ No need to add anything here. Feel free to delete this line when you make your o
 Leave it empty
 """
 # flake8: noqa
-from telegram import *
+from telegram import telegram
+
+__all__ = [
+    'telegram'
+]
