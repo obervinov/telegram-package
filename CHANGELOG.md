@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## v1.2.0 - 2024-02-01
+## v1.2.0 - 2024-02-06
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.3...v1.2.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/25
 #### 🐛 Bug Fixes
@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 * [Migration from pip to poetry](https://github.com/obervinov/telegram-package/issues/3)
 * [Add more useful methods for typical bots](https://github.com/obervinov/telegram-package/issues/26)
 * [Add default size in method parameter](https://github.com/obervinov/telegram-package/issues/20)
+* [Add support environment variable `TELEGRAM_BOT_NAME`](https://github.com/obervinov/telegram-package/issues/28)
 #### 📚 Documentation
 * [Fix documentation](https://github.com/obervinov/telegram-package/issues/21)
 * [Change the order of changes by sections in `CHANGELOG.md`](https://github.com/obervinov/telegram-package/issues/23)

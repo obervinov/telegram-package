@@ -26,6 +26,7 @@ This module is designed for quick initialization, authorization and rendering of
 - Starting the bot polling process
 - Sending a styled message to the user
 
+
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Data structure in Vault
 The structure of storing the bot token in the **Vault**
 ```bash
@@ -74,6 +75,11 @@ poetry install
 ```
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/config.png" width="25" title="usage"> Usage example
+### Environment variables
+| Name  | Description | Default value |
+| ------------------- | ----------------- | ------ |
+| `TELEGRAM_BOT_NAME` | Telegram bot name | `None` |
+
 1. Create messages template file
 ```bash
 tee -a configs/messages.json <<EOF

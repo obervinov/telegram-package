@@ -3,6 +3,7 @@ This is an additional implementation compared to the telebot module.
 This module is designed for quick initialization, authorization
 and rendering of various buttons/widgets for telegram bots.
 """
+import os
 import time
 import telebot
 from telebot.apihelper import ApiTelegramException
@@ -34,7 +35,15 @@ class TelegramBot:
         Returns:
             None
         """
-        self.name = name
+        if os.environ.get('TELEGRAM_BOT_NAME', None):
+            self.name = os.environ.get('TELEGRAM_BOT_NAME')
+        elif name:
+            self.name = name
+        else:
+            log.error(
+                'Telegram bot name is not specified. '
+                'Please, set the TELEGRAM_BOT_NAME environment variable or pass the name parameter to the constructor.'
+            )
         self.token = vault.read_secret(
             'configuration/telegram',
             "token"
