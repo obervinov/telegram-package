@@ -19,7 +19,7 @@ include = ["CHANGELOG.md"]
 [tool.poetry.dependencies]
 python = "^3.9"
 pyTelegramBotAPI = "^4"
-logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.5" }
+logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.6" }
 vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v2.0.3" }
 messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v1.0.4" }
 
