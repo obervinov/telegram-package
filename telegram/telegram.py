@@ -165,3 +165,12 @@ class TelegramBot:
                     attempt_timeout
                 )
                 time.sleep(attempt_timeout)
+            # pylint: disable=broad-exception-caught
+            except Exception as unknown_exception:
+                log.error(
+                    '[Bot]: Unknown error: %s\n'
+                    'Next polling attempt in %s seconds...',
+                    unknown_exception,
+                    attempt_timeout
+                )
+                time.sleep(attempt_timeout)
