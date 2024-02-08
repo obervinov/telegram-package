@@ -5,6 +5,7 @@ and rendering of various buttons/widgets for telegram bots.
 """
 import os
 import time
+import traceback
 import telebot
 from telebot.apihelper import ApiTelegramException
 from messages import Messages
@@ -167,10 +168,18 @@ class TelegramBot:
                 time.sleep(attempt_timeout)
             # pylint: disable=broad-exception-caught
             except Exception as unknown_exception:
+                traceback_info = traceback.extract_tb(unknown_exception.__traceback__)
+                last_call = traceback_info[-1]
+                file, line, func, line_code = last_call
                 log.error(
                     '[Bot]: Unknown error: %s\n'
+                    '%s:%s:%s:%s\n'
                     'Next polling attempt in %s seconds...',
                     unknown_exception,
+                    file,
+                    line,
+                    func,
+                    line_code,
                     attempt_timeout
                 )
                 time.sleep(attempt_timeout)
