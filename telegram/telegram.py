@@ -7,7 +7,6 @@ import os
 import time
 import traceback
 import telebot
-from telebot.apihelper import ApiTelegramException
 from messages import Messages
 from logger import log
 from vault import VaultClient
@@ -187,7 +186,7 @@ class TelegramBot:
                 self.telegram_bot.polling(
                     timeout=attempt_timeout
                 )
-            except ApiTelegramException as exception:
+            except telebot.apihelper.ApiTelegramException as exception:
                 log.error(
                     '[Bot]: Error polling messages: %s\n'
                     'Next attempt in %s seconds...',
