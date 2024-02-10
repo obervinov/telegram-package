@@ -158,7 +158,7 @@ class TelegramBot:
                 self.telegram_bot.polling(
                     timeout=attempt_timeout
                 )
-            except self.api_telegram_exception as exception:
+            except ApiTelegramException as exception:
                 log.error(
                     '[Bot]: Error polling messages: %s\n'
                     'Next attempt in %s seconds...',
@@ -173,7 +173,7 @@ class TelegramBot:
                 file, line, func, line_code = last_call
                 log.error(
                     '[Bot]: Unknown error: %s\n'
-                    '%s:%s:%s:%s\n'
+                    '%s:%s -> %s -> %s\n'
                     'Next polling attempt in %s seconds...',
                     unknown_exception,
                     file,
