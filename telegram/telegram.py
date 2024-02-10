@@ -10,6 +10,8 @@ import telebot
 from telebot.apihelper import ApiTelegramException
 from messages import Messages
 from logger import log
+from vault import VaultClient
+from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration
 
 
 class TelegramBot:
@@ -20,7 +22,7 @@ class TelegramBot:
     def __init__(
         self,
         name: str = None,
-        vault: object = None,
+        vault: any = None,
         parse_mode: str = 'HTML',
         messages_config: str = None
     ) -> None:
@@ -29,7 +31,9 @@ class TelegramBot:
 
         Args:
             :param name (str): the name of the bot.
-            :param vault (object): an instance with the vault client to receive a private token.
+            :param vault (any): Configuration for initializing the Vault client.
+                - (object) VaultClient instance for interacting with the Vault API.
+                - (dict) Configuration for initializing a VaultClient instance in this class.
             :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
             :param messages_config (str): path to the messages configuration file with templates.
 
@@ -41,20 +45,45 @@ class TelegramBot:
         elif name:
             self.name = name
         else:
-            log.error(
-                'Telegram bot name is not specified. '
-                'Please, set the TELEGRAM_BOT_NAME environment variable or pass the name parameter to the constructor.'
+            raise BotNameNotSet(
+                "Telegram bot name is not set. "
+                "Please, set the TELEGRAM_BOT_NAME environment variable or pass the name parameter to the constructor."
             )
-        self.token = vault.read_secret(
-            'configuration/telegram',
-            "token"
-        )
+
+        if isinstance(vault, VaultClient):
+            self._vault = vault
+        elif isinstance(vault, dict):
+            self._vault = VaultClient(
+                name=vault.get('name', None),
+                url=vault.get('url', None),
+                approle=vault.get('approle', None)
+            )
+        else:
+            log.error(
+                '[class.%s] wrong vault parameters in Users(vault=%s), see doc-string',
+                __class__.__name__,
+                vault
+            )
+            raise VaultInstanceNotSet("Vault instance is not set. Please provide a valid Vault instance as instance or dictionary.")
+
+        try:
+            self.token = vault.read_secret(
+                'configuration/telegram',
+                "token"
+            )
+        except Exception as exception:
+            log.error(
+                '[class.%s] error reading the token from the Vault: %s',
+                __class__.__name__,
+                exception
+            )
+            raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.") from exception
+
         self.telegram_bot = telebot.TeleBot(
             self.token,
             parse_mode=parse_mode
         )
         self.telegram_types = telebot.types
-        self.api_telegram_exception = ApiTelegramException
         self.callback_query = telebot.types.CallbackQuery
         self.messages = Messages(
             config_path=messages_config
@@ -131,11 +160,11 @@ class TelegramBot:
                 ),
                 reply_markup=reply_markup,
             )
-        except self.api_telegram_exception as exception:
+        except ApiTelegramException as api_exception:
             log.warning(
                 '[Bot]: Error sending message to user %s: %s',
                 chat_id,
-                exception
+                api_exception
             )
             response = None
 
@@ -166,6 +195,8 @@ class TelegramBot:
                     attempt_timeout
                 )
                 time.sleep(attempt_timeout)
+            # For catch not defined exceptions for all cases, because its main thread
+            # Exceptions caught by this code should be added to the processing of the source modules in which they occur
             # pylint: disable=broad-exception-caught
             except Exception as unknown_exception:
                 traceback_info = traceback.extract_tb(unknown_exception.__traceback__)
