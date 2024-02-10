@@ -186,11 +186,11 @@ class TelegramBot:
                 self.telegram_bot.polling(
                     timeout=attempt_timeout
                 )
-            except telebot.apihelper.ApiTelegramException as exception:
+            except telebot.apihelper.ApiTelegramException as api_exception:
                 log.error(
                     '[Bot]: Error polling messages: %s\n'
                     'Next attempt in %s seconds...',
-                    exception,
+                    api_exception,
                     attempt_timeout
                 )
                 time.sleep(attempt_timeout)
