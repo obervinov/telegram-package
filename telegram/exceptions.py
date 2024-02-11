@@ -58,3 +58,22 @@ class InvalidTokenConfiguration(Exception):
     def __init__(self, message):
         self.message = message
         super().__init__(message)
+
+
+class FailedToCreateInstance(Exception):
+    """
+    Raised when the instance is not created.
+
+    Args:
+        message (str): The error message.
+
+    Example:
+        >>> try:
+        ...     raise FaildToCreareInstance("Faild to create instance")
+        ... except FaildToCreareInstance as e:
+        ...     print(e)
+        Faild to create instance
+    """
+    def __init__(self, message):
+        self.message = message
+        super().__init__(message)

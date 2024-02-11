@@ -5,8 +5,9 @@ and rendering of various buttons/widgets for telegram bots.
 """
 import os
 import time
-import traceback
+# import traceback
 import telebot
+from telebot.apihelper import ApiTelegramException
 from messages import Messages
 from logger import log
 from vault import VaultClient
@@ -39,6 +40,7 @@ class TelegramBot:
         Returns:
             None
         """
+        # Extract the bot name from the environment variable or the parameter
         if os.environ.get('TELEGRAM_BOT_NAME', None):
             self.name = os.environ.get('TELEGRAM_BOT_NAME')
         elif name:
@@ -49,6 +51,7 @@ class TelegramBot:
                 "Please, set the TELEGRAM_BOT_NAME environment variable or pass the name parameter to the constructor."
             )
 
+        # Initialize the Vault client
         if isinstance(vault, VaultClient):
             self._vault = vault
         elif isinstance(vault, dict):
@@ -65,6 +68,7 @@ class TelegramBot:
             )
             raise VaultInstanceNotSet("Vault instance is not set. Please provide a valid Vault instance as instance or dictionary.")
 
+        # Read the token from the Vault
         try:
             self.token = vault.read_secret(
                 'configuration/telegram',
@@ -78,15 +82,28 @@ class TelegramBot:
             )
             raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.") from exception
 
-        self.telegram_bot = telebot.TeleBot(
-            self.token,
-            parse_mode=parse_mode
-        )
+        # Create the bot instance
+        try:
+            self.telegram_bot = telebot.TeleBot(
+                self.token,
+                parse_mode=parse_mode
+            )
+        except ApiTelegramException as api_exception:
+            log.error(
+                '[Bot]: Error creating the bot instance: %s',
+                api_exception
+            )
+            if api_exception.error_code == 409:
+                # Conflict between the more then one bot with the same token
+                # Just trying to wait for the first bot to be stopped
+                time.sleep(15)
+            if api_exception.error_code in [401, 403]:
+                # Unauthorized: The bot's token is invalid
+                raise InvalidTokenConfiguration("Telegram token is not valid. Please provide a valid token in the Vault.") from api_exception
+
         self.telegram_types = telebot.types
         self.callback_query = telebot.types.CallbackQuery
-        self.messages = Messages(
-            config_path=messages_config
-        )
+        self.messages = Messages(config_path=messages_config)
 
     def create_inline_markup(
         self,
@@ -186,7 +203,7 @@ class TelegramBot:
                 self.telegram_bot.polling(
                     timeout=attempt_timeout
                 )
-            except telebot.apihelper.ApiTelegramException as api_exception:
+            except ApiTelegramException as api_exception:
                 log.error(
                     '[Bot]: Error polling messages: %s\n'
                     'Next attempt in %s seconds...',
@@ -194,22 +211,21 @@ class TelegramBot:
                     attempt_timeout
                 )
                 time.sleep(attempt_timeout)
-            # For catch not defined exceptions for all cases, because its main thread
-            # Exceptions caught by this code should be added to the processing of the source modules in which they occur
-            # pylint: disable=broad-exception-caught
-            except Exception as unknown_exception:
-                traceback_info = traceback.extract_tb(unknown_exception.__traceback__)
-                last_call = traceback_info[-1]
-                file, line, func, line_code = last_call
-                log.error(
-                    '[Bot]: Unknown error: %s\n'
-                    '%s:%s -> %s -> %s\n'
-                    'Next polling attempt in %s seconds...',
-                    unknown_exception,
-                    file,
-                    line,
-                    func,
-                    line_code,
-                    attempt_timeout
-                )
-                time.sleep(attempt_timeout)
+            # # For catch not defined exceptions for all cases, because its main thread
+            # # Exceptions caught by this code should be added to the processing of the source modules in which they occur
+            # # pylint: disable=broad-exception-caught
+            # except Exception as unknown_exception:
+            #     traceback_info = traceback.extract_tb(unknown_exception.__traceback__)
+            #     last_call = traceback_info[-1]
+            #     file, line, func = last_call
+            #     log.error(
+            #         '[Bot]: Unknown error: %s\n'
+            #         '%s:%s -> %s\n'
+            #         'Next polling attempt in %s seconds...',
+            #         unknown_exception,
+            #         file,
+            #         line,
+            #         func,
+            #         attempt_timeout
+            #     )
+            #     time.sleep(attempt_timeout)

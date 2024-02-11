@@ -5,11 +5,12 @@ Leave it empty
 """
 # flake8: noqa
 from .telegram import TelegramBot
-from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration
+from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration, FailedToCreateInstance
 
 __all__ = [
     "TelegramBot",
     "VaultInstanceNotSet",
     "BotNameNotSet",
-    "InvalidTokenConfiguration"
+    "InvalidTokenConfiguration",
+    "FailedToCreateInstance"
 ]
