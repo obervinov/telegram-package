@@ -5,13 +5,12 @@ and rendering of various buttons/widgets for telegram bots.
 """
 import os
 import time
-# import traceback
 import telebot
 from telebot.apihelper import ApiTelegramException
 from messages import Messages
 from logger import log
 from vault import VaultClient
-from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration
+from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration, FailedToCreateInstance
 
 
 class TelegramBot:
@@ -194,38 +193,29 @@ class TelegramBot:
             None
         """
         attempt_timeout = 60
-        while True:
-            log.info(
-                '[Bot]: Starting bot %s...',
-                self.name
-            )
-            try:
+        try:
+            while True:
+                log.info(
+                    '[Bot]: Starting bot %s...',
+                    self.name
+                )
                 self.telegram_bot.polling(
                     timeout=attempt_timeout
                 )
-            except ApiTelegramException as api_exception:
+        except ApiTelegramException as api_exception:
+            log.error(
+                '[Bot]: Error creating the bot instance: %s',
+                api_exception
+            )
+            if api_exception.error_code == 409:
+                # Conflict between the more then one bot with the same token
+                # Just trying to wait for the first bot to be stopped
+                time.sleep(attempt_timeout)
+            else:
                 log.error(
-                    '[Bot]: Error polling messages: %s\n'
-                    'Next attempt in %s seconds...',
+                    '[Bot]: Error: %s\n'
+                    'Next polling attempt in %s seconds...',
                     api_exception,
                     attempt_timeout
                 )
-                time.sleep(attempt_timeout)
-            # # For catch not defined exceptions for all cases, because its main thread
-            # # Exceptions caught by this code should be added to the processing of the source modules in which they occur
-            # # pylint: disable=broad-exception-caught
-            # except Exception as unknown_exception:
-            #     traceback_info = traceback.extract_tb(unknown_exception.__traceback__)
-            #     last_call = traceback_info[-1]
-            #     file, line, func = last_call
-            #     log.error(
-            #         '[Bot]: Unknown error: %s\n'
-            #         '%s:%s -> %s\n'
-            #         'Next polling attempt in %s seconds...',
-            #         unknown_exception,
-            #         file,
-            #         line,
-            #         func,
-            #         attempt_timeout
-            #     )
-            #     time.sleep(attempt_timeout)
+                raise FailedToCreateInstance("Failed to create the bot instance.") from api_exception
