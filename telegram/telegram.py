@@ -17,6 +17,26 @@ class TelegramBot:
     """
     This class contains methods for quick initialization, authorization
     and rendering of various buttons/widgets for telegram bots.
+
+    Args:
+        :param name (str): the name of the bot.
+        :param vault (any): Configuration for initializing the Vault client.
+            - (object) VaultClient instance for interacting with the Vault API.
+            - (dict) Configuration for initializing a VaultClient instance in this class.
+        :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
+        :param messages_config (str): path to the messages configuration file with templates.
+
+    Raises:
+        :raises VaultInstanceNotSet: if the Vault instance is not set.
+        :raises BotNameNotSet: if the bot name is not set.
+        :raises InvalidTokenConfiguration: if the Telegram token is not set.
+        :raises FailedToCreateInstance: if the bot instance cannot be created.
+
+    Returns:
+        None
+
+    Example:
+        >>> bot = TelegramBot()
     """
     def __init__(
         self,
@@ -35,6 +55,12 @@ class TelegramBot:
                 - (dict) Configuration for initializing a VaultClient instance in this class.
             :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
             :param messages_config (str): path to the messages configuration file with templates.
+
+        Raises:
+            :raises VaultInstanceNotSet: if the Vault instance is not set.
+            :raises BotNameNotSet: if the bot name is not set.
+            :raises InvalidTokenConfiguration: if the Telegram token is not set.
+            :raises FailedToCreateInstance: if the bot instance cannot be created.
 
         Returns:
             None
@@ -189,8 +215,14 @@ class TelegramBot:
         """
         A method for start pulling the message with logging and exceptions.
 
+        Args:
+            None
+
         Returns:
             None
+
+        Raises:
+            :raises FailedToCreateInstance: if the bot instance cannot be created.
         """
         attempt_timeout = 60
         try:
