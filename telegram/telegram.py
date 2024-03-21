@@ -19,15 +19,13 @@ class ExceptionHandler(telebot.ExceptionHandler):
     def handle(self, exception):
         attempt_timeout = 60
         log.error('[Bot]: Error creating the bot instance: %s', exception)
-        if exception.error_code == 409:
+        if 'Error code: 409' in str(exception):
             # Conflict between the more then one bot with the same token
             # Just trying to wait for the first bot to be stopped
             time.sleep(attempt_timeout)
             log.warning('[Bot]: Conflict between the more then one bot with the same token. Trying to wait for the first bot to be stopped...')
-        elif exception.error_code == 400:
-            log.error('[Bot]: Query execution error: %s', exception)
         else:
-            log.error('[Bot]: Error: %s\nNext polling attempt in %s seconds...', exception, attempt_timeout)
+            log.error('[Bot]: Error: %s', exception)
             raise FailedToCreateInstance("Failed to create the bot instance.") from exception
 
 
