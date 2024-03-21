@@ -13,6 +13,25 @@ from vault import VaultClient
 from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration, FailedToCreateInstance
 
 
+class ExceptionHandler(telebot.ExceptionHandler):
+    """
+    This class contains methods for handling exceptions that occur during the operation of the bot.
+    """
+    def handle(self, exception):
+        attempt_timeout = 60
+        log.error('[Bot]: Error creating the bot instance: %s', exception)
+        if exception.error_code == 409:
+            # Conflict between the more then one bot with the same token
+            # Just trying to wait for the first bot to be stopped
+            time.sleep(attempt_timeout)
+            log.warning('[Bot]: Conflict between the more then one bot with the same token. Trying to wait for the first bot to be stopped...')
+        elif exception.error_code == 400:
+            log.error('[Bot]: Query execution error: %s', exception)
+        else:
+            log.error('[Bot]: Error: %s\nNext polling attempt in %s seconds...', exception, attempt_timeout)
+            raise FailedToCreateInstance("Failed to create the bot instance.") from exception
+
+
 class TelegramBot:
     """
     This class contains methods for quick initialization, authorization
@@ -108,24 +127,11 @@ class TelegramBot:
             raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.") from exception
 
         # Create the bot instance
-        try:
-            self.telegram_bot = telebot.TeleBot(
-                self.token,
-                parse_mode=parse_mode
-            )
-        except ApiTelegramException as api_exception:
-            log.error(
-                '[Bot]: Error creating the bot instance: %s',
-                api_exception
-            )
-            if api_exception.error_code == 409:
-                # Conflict between the more then one bot with the same token
-                # Just trying to wait for the first bot to be stopped
-                time.sleep(15)
-            if api_exception.error_code in [401, 403]:
-                # Unauthorized: The bot's token is invalid
-                raise InvalidTokenConfiguration("Telegram token is not valid. Please provide a valid token in the Vault.") from api_exception
-
+        self.telegram_bot = telebot.TeleBot(
+            self.token,
+            parse_mode=parse_mode,
+            exception_handler=ExceptionHandler()
+        )
         self.telegram_types = telebot.types
         self.callback_query = telebot.types.CallbackQuery
         self.messages = Messages(config_path=messages_config)
@@ -225,29 +231,9 @@ class TelegramBot:
             :raises FailedToCreateInstance: if the bot instance cannot be created.
         """
         attempt_timeout = 60
-        try:
-            while True:
-                log.info(
-                    '[Bot]: Starting bot %s...',
-                    self.name
-                )
-                self.telegram_bot.polling(
-                    timeout=attempt_timeout
-                )
-        except ApiTelegramException as api_exception:
-            log.error(
-                '[Bot]: Error creating the bot instance: %s',
-                api_exception
+        while True:
+            log.info(
+                '[Bot]: Starting bot %s...',
+                self.name
             )
-            if api_exception.error_code == 409:
-                # Conflict between the more then one bot with the same token
-                # Just trying to wait for the first bot to be stopped
-                time.sleep(attempt_timeout)
-            else:
-                log.error(
-                    '[Bot]: Error: %s\n'
-                    'Next polling attempt in %s seconds...',
-                    api_exception,
-                    attempt_timeout
-                )
-                raise FailedToCreateInstance("Failed to create the bot instance.") from api_exception
+            self.telegram_bot.polling(timeout=attempt_timeout)
