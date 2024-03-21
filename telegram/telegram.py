@@ -6,7 +6,6 @@ and rendering of various buttons/widgets for telegram bots.
 import os
 import time
 import telebot
-from telebot.apihelper import ApiTelegramException
 from messages import Messages
 from logger import log
 from vault import VaultClient
@@ -189,32 +188,23 @@ class TelegramBot:
         Returns:
             telegram.telegram_types.Message: The message sent to the user.
         """
-        try:
-            if progressbar:
-                progressbar_string = self.messages.render_progressbar(
-                    total_count=progressbar['total'],
-                    current_count=progressbar['current']
-                )
-            else:
-                progressbar_string = None
-
-            response = self.telegram_bot.send_message(
-                chat_id=chat_id,
-                text=self.messages.render_template(
-                    template_alias=messages_template['alias'],
-                    progressbar=progressbar_string,
-                    **messages_template.get('kwargs', {})
-                ),
-                reply_markup=reply_markup,
+        if progressbar:
+            progressbar_string = self.messages.render_progressbar(
+                total_count=progressbar['total'],
+                current_count=progressbar['current']
             )
-        except ApiTelegramException as api_exception:
-            log.warning(
-                '[Bot]: Error sending message to user %s: %s',
-                chat_id,
-                api_exception
-            )
-            response = None
+        else:
+            progressbar_string = None
 
+        response = self.telegram_bot.send_message(
+            chat_id=chat_id,
+            text=self.messages.render_template(
+                template_alias=messages_template['alias'],
+                progressbar=progressbar_string,
+                **messages_template.get('kwargs', {})
+            ),
+            reply_markup=reply_markup,
+        )
         return response
 
     def launch_bot(self) -> None:
