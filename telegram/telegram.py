@@ -18,7 +18,6 @@ class ExceptionHandler(telebot.ExceptionHandler):
     """
     def handle(self, exception):
         attempt_timeout = 60
-        log.error('[Bot]: Error creating the bot instance: %s', exception)
         if 'Error code: 409' in str(exception):
             # Conflict between the more then one bot with the same token
             # Just trying to wait for the first bot to be stopped
@@ -123,15 +122,18 @@ class TelegramBot:
             )
             raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.") from exception
 
-        # Create the bot instance
-        self.telegram_bot = telebot.TeleBot(
-            self.token,
-            parse_mode=parse_mode,
-            exception_handler=ExceptionHandler()
-        )
-        self.telegram_types = telebot.types
-        self.callback_query = telebot.types.CallbackQuery
-        self.messages = Messages(config_path=messages_config)
+        try:
+            # Create the bot instance
+            self.telegram_bot = telebot.TeleBot(
+                self.token,
+                parse_mode=parse_mode,
+                exception_handler=ExceptionHandler()
+            )
+            self.telegram_types = telebot.types
+            self.callback_query = telebot.types.CallbackQuery
+            self.messages = Messages(config_path=messages_config)
+        except Exception as exception:
+            raise FailedToCreateInstance("Failed to create the bot instance.") from exception
 
     def create_inline_markup(
         self,
