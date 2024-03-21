@@ -167,11 +167,10 @@ class TelegramBot:
         self,
         chat_id: str = None,
         messages_template: dict = None,
-        reply_markup: telebot.types.InlineKeyboardMarkup = None,
-        progressbar: dict = None
+        **kwargs
     ) -> telebot.types.Message:
         """
-        Send a formatted, beautiful message from the Messages text templates.
+        A method for sending a styled message to the user or editing an existing message.
 
         Args:
             chat_id (str): The ID of the chat where the message will be sent.
@@ -179,15 +178,22 @@ class TelegramBot:
                 The dictionary should contain the following keys:
                     - alias (str): The alias of the template to use.
                     - kwargs (dict): A dictionary containing any keyword arguments to be passed to the template.
+        Keyword Args:
             reply_markup (telebot.types.InlineKeyboardMarkup): The inline keyboard markup to be sent with the message.
             progressbar (dict): A dictionary containing the progress bar parameters.
                 The dictionary should contain the following keys:
                     - current (int): The current value of the progress bar.
                     - total (int): The total value of the progress bar.
+            editable_message_id (int): The ID of the message to be edited.
 
         Returns:
             telegram.telegram_types.Message: The message sent to the user.
         """
+        # extract keyword arguments
+        progressbar = kwargs.get('progressbar', None)
+        reply_markup = kwargs.get('reply_markup', None)
+        editable_message_id = kwargs.get('editable_message_id', None)
+        
         if progressbar:
             progressbar_string = self.messages.render_progressbar(
                 total_count=progressbar['total'],
@@ -196,16 +202,48 @@ class TelegramBot:
         else:
             progressbar_string = None
 
-        response = self.telegram_bot.send_message(
-            chat_id=chat_id,
-            text=self.messages.render_template(
-                template_alias=messages_template['alias'],
-                progressbar=progressbar_string,
-                **messages_template.get('kwargs', {})
-            ),
-            reply_markup=reply_markup,
-        )
+        if editable_message_id:
+            response = self.telegram_bot.edit_message_text(
+                chat_id=chat_id,
+                message_id=editable_message_id,
+                text=self.messages.render_template(
+                    template_alias=messages_template['alias'],
+                    progressbar=progressbar_string,
+                    **messages_template.get('kwargs', {})
+                ),
+                reply_markup=reply_markup,
+            )
+        else:
+            response = self.telegram_bot.send_message(
+                chat_id=chat_id,
+                text=self.messages.render_template(
+                    template_alias=messages_template['alias'],
+                    progressbar=progressbar_string,
+                    **messages_template.get('kwargs', {})
+                ),
+                reply_markup=reply_markup,
+            )
         return response
+
+    def delete_message(
+        self,
+        chat_id: str = None,
+        message_id: int = None
+    ) -> None:
+        """
+        A method for deleting a message.
+
+        Args:
+            chat_id (str): The ID of the chat where the message will be deleted.
+            message_id (int): The ID of the message to be deleted.
+
+        Returns:
+            None
+        """
+        self.telegram_bot.delete_message(
+            chat_id=chat_id,
+            message_id=message_id
+        )
 
     def launch_bot(self) -> None:
         """
