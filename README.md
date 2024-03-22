@@ -12,7 +12,7 @@
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/book.png" width="25" title="about"> About this project
 This is an additional implementation compared to the **telebot** module.
 
-This module is designed for quick initialization, authorization and rendering of various _buttons/widgets_ for telegram bot.
+This module is designed for quick initialization, authorization, rendering various _buttons/widgets_ and sending stylized messages for telegram-bots.
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
 | Name  | Version |
@@ -24,7 +24,7 @@ This module is designed for quick initialization, authorization and rendering of
 - Creating a connection to the telegram api and initializing the objects necessary for the bot to function (_parser_, _format_, _types_, _etc_)
 - Generating an inline keyboard button with a matrix of the specified size from the passed elements
 - Starting the bot polling process
-- Sending or Editing a styled message to the user
+- Sending or editing a stylized message to a user
 - Deleting a message from chat
 - Interception of invoked exceptions
 
@@ -36,15 +36,6 @@ The structure of storing the bot token in the **Vault**
  % vault kv get ${mount_point}/configuration/telegram
 ========= Secret Path =========
 configuration/data/telegram
-
-======= Metadata =======
-Key                Value
----                -----
-created_time       2023-03-26T08:00:00.000000000Z
-custom_metadata    <nil>
-deletion_time      n/a
-destroyed          false
-version            1
 
 ====== Data ======
 Key         Value
