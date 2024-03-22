@@ -111,6 +111,9 @@ tee -a configs/messages.json <<EOF
             message.chat.id,
             messages_template={
                 'alias': 'hello_message',
+                'kwargs': {
+                    'username': message.from_user.first_name
+                }
             }
         )  
     

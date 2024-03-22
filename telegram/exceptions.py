@@ -1,5 +1,5 @@
 """
-Custom exceptions for the Users package.
+Custom exceptions for the Telegram package.
 """
 
 

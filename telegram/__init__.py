@@ -4,11 +4,12 @@ No need to add anything here. Feel free to delete this line when you make your o
 Leave it empty
 """
 # flake8: noqa
-from .telegram import TelegramBot
+from .telegram import TelegramBot, ExceptionHandler
 from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration, FailedToCreateInstance
 
 __all__ = [
     "TelegramBot",
+    "ExceptionHandler",
     "VaultInstanceNotSet",
     "BotNameNotSet",
     "InvalidTokenConfiguration",
