@@ -1,0 +1,8 @@
+{
+    "templates": {
+        "test_message": {
+            "text": "Hi, <b>{0}</b>! {1}\nAccess for your account - allowed {2}",
+            "args": ["username", ":raised_hand:", ":unlocked:"]
+        }
+    }
+}

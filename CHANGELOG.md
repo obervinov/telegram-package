@@ -2,14 +2,32 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## v1.2.0 - 2024-03-22
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.3...v1.2.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/25
+#### 🐛 Bug Fixes
+* [Dependency graph does not work correctly, sort it out and fix it network/dependencies](https://github.com/obervinov/telegram-package/issues/25)
+* [Add class parameters for exception handling](https://github.com/obervinov/telegram-package/issues/19)
+#### 🚀 Features
+* [Merge all workflows to single file](https://github.com/obervinov/telegram-package/issues/22)
+* [Migration from pip to poetry](https://github.com/obervinov/telegram-package/issues/3)
+* [Add more useful methods for typical bots](https://github.com/obervinov/telegram-package/issues/26)
+* [Add default size in method parameter](https://github.com/obervinov/telegram-package/issues/20)
+* [Add support environment variable `TELEGRAM_BOT_NAME`](https://github.com/obervinov/telegram-package/issues/28)
+#### 📚 Documentation
+* [Fix documentation](https://github.com/obervinov/telegram-package/issues/21)
+* [Change the order of changes by sections in `CHANGELOG.md`](https://github.com/obervinov/telegram-package/issues/23)
+
+
 ## v1.1.3 - 2023-06-20
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.2...v1.1.3 by @obervinov in https://github.com/obervinov/telegram-package/pull/18
 #### 🐛 Bug Fixes
 * [Fix badge with tests in README.md](https://github.com/obervinov/telegram-package/issues/15)
-* [Bump vault-package to v2.0.1](https://github.com/obervinov/telegram-package/issues/17)
-#### 🚀 Features
 * [Fix the error that caused the workflow create_release to run twice - at pr/main](https://github.com/obervinov/telegram-package/issues/16)
+#### 🚀 Features
+* [Bump vault-package to v2.0.1](https://github.com/obervinov/telegram-package/issues/17)
 
 
 ## v1.1.2 - 2023-06-18

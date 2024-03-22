@@ -64,5 +64,7 @@ def fixture_telegram_client(vault):
     )
     print(f"Prepared test data status: {response}")
     return TelegramBot(
-        vault=vault
+        name='testapp-1',
+        vault=vault,
+        messages_config='tests/configs/messages.json'
     )
