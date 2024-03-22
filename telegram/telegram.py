@@ -101,34 +101,25 @@ class TelegramBot:
                 approle=vault.get('approle', None)
             )
         else:
-            log.error(
-                '[class.%s] wrong vault parameters in Users(vault=%s), see doc-string',
-                __class__.__name__,
-                vault
-            )
+            log.error('[class.%s] wrong vault parameters in Users(vault=%s), see doc-string', __class__.__name__, vault)
             raise VaultInstanceNotSet("Vault instance is not set. Please provide a valid Vault instance as instance or dictionary.")
 
         # Read the token from the Vault
-        try:
-            self.token = vault.read_secret(
-                'configuration/telegram',
-                "token"
-            )
-        except Exception as exception:
-            log.error(
-                '[class.%s] error reading the token from the Vault: %s',
-                __class__.__name__,
-                exception
-            )
-            raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.") from exception
+        self.token = vault.read_secret(
+            path='configuration/telegram',
+            key="token"
+        )
+        if self.token is None:
+            raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.")
 
         try:
             # Create the bot instance
             self.telegram_bot = telebot.TeleBot(
-                self.token,
+                token=self.token,
                 parse_mode=parse_mode,
                 exception_handler=ExceptionHandler()
             )
+            # Set additional attributes
             self.telegram_types = telebot.types
             self.callback_query = telebot.types.CallbackQuery
             self.messages = Messages(config_path=messages_config)
