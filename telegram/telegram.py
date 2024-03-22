@@ -193,7 +193,7 @@ class TelegramBot:
         progressbar = kwargs.get('progressbar', None)
         reply_markup = kwargs.get('reply_markup', None)
         editable_message_id = kwargs.get('editable_message_id', None)
-        
+
         if progressbar:
             progressbar_string = self.messages.render_progressbar(
                 total_count=progressbar['total'],
