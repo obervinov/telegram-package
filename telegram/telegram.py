@@ -9,6 +9,7 @@ import telebot
 from messages import Messages
 from logger import log
 from vault import VaultClient
+from .constants import DEFAULT_PARSE_MODE, DEFAULT_TIMEOUT
 from .exceptions import VaultInstanceNotSet, BotNameNotSet, InvalidTokenConfiguration, FailedToCreateInstance
 
 
@@ -17,12 +18,11 @@ class ExceptionHandler(telebot.ExceptionHandler):
     This class contains methods for handling exceptions that occur during the operation of the bot.
     """
     def handle(self, exception):
-        attempt_timeout = 60
         if 'Error code: 409' in str(exception):
             # Conflict between the more then one bot with the same token
             # Just trying to wait for the first bot to be stopped
-            time.sleep(attempt_timeout)
-            log.warning('[Bot]: Conflict between the more then one bot with the same token. Trying to wait for the first bot to be stopped...')
+            log.warning('[Bot]: %s. Trying to wait for the first bot to be stopped...', exception)
+            time.sleep(DEFAULT_TIMEOUT)
         else:
             log.error('[Bot]: Error: %s', exception)
             raise FailedToCreateInstance("Failed to create the bot instance.") from exception
@@ -57,7 +57,7 @@ class TelegramBot:
         self,
         name: str = None,
         vault: any = None,
-        parse_mode: str = 'HTML',
+        parse_mode: str = DEFAULT_PARSE_MODE,
         messages_config: str = None
     ) -> None:
         """
@@ -175,7 +175,7 @@ class TelegramBot:
                 The dictionary should contain the following keys:
                     - current (int): The current value of the progress bar.
                     - total (int): The total value of the progress bar.
-            editable_message_id (int): The ID of the message to be edited.
+            editable_message_id (int): The ID of the message to be edited. Used to edit an existing message.
 
         Returns:
             telegram.telegram_types.Message: The message sent to the user.
@@ -249,10 +249,6 @@ class TelegramBot:
         Raises:
             :raises FailedToCreateInstance: if the bot instance cannot be created.
         """
-        attempt_timeout = 60
         while True:
-            log.info(
-                '[Bot]: Starting bot %s...',
-                self.name
-            )
-            self.telegram_bot.polling(timeout=attempt_timeout)
+            log.info('[Bot]: Starting bot %s...', self.name)
+            self.telegram_bot.polling(timeout=DEFAULT_TIMEOUT)
