@@ -57,7 +57,7 @@ def fixture_policy_path():
 
 
 @pytest.fixture(name="prepare_vault", scope='session')
-def fixture_prepare_vault(vault_url, namespace, policy_path, postgres_url):
+def fixture_prepare_vault(vault_url, namespace, policy_path):
     """Returns the vault client"""
     client = hvac.Client(url=vault_url)
     init_data = client.sys.initialize()
