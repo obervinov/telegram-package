@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "telegram"
-version = "1.2.0"
+version = "2.0.0"
 description = "This is an additional implementation compared to the telebot module. This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bots."
-authors = ["Bervinov Oleg <obervinov@pm.me>"]
-maintainers = ["Bervinov Oleg <obervinov@pm.me>"]
+authors = ["Bervinov Oleg <bervinov.ob@gmail.com>"]
+maintainers = ["Bervinov Oleg <bervinov.ob@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "telegram"}]
@@ -18,11 +18,13 @@ include = ["CHANGELOG.md"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pytest = "^8"
 pyTelegramBotAPI = "^4"
 logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v1.0.6" }
-vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v2.0.4" }
+vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v3.0.0" }
 messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v1.0.4" }
+
+[tool.poetry.dev-dependencies]
+pytest = "^8"
 
 [build-system]
 requires = ["poetry-core"]

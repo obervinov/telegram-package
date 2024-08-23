@@ -14,11 +14,6 @@ This is an additional implementation compared to the **telebot** module.
 
 This module is designed for quick initialization, authorization, rendering various _buttons/widgets_ and sending stylized messages for telegram-bots.
 
-## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
-| Name  | Version |
-| ------------------------ | ----------- |
-| GitHub Actions Templates | [v1.0.13](https://github.com/obervinov/_templates/tree/v1.0.13) |
-
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Supported functions
 - Creating a connection to the telegram api and initializing the objects necessary for the bot to function (_parser_, _format_, _types_, _etc_)
@@ -31,16 +26,11 @@ This module is designed for quick initialization, authorization, rendering vario
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/requirements.png" width="25" title="functions"> Data structure in Vault
 The structure of storing the bot token in the **Vault**
-```bash
-# token data
- % vault kv get ${mount_point}/configuration/telegram
-========= Secret Path =========
-configuration/data/telegram
-
-====== Data ======
-Key         Value
----         -----
-token       123456qwerty
+Configuration path: `${mount_point}/configuration/telegram`
+```json
+{
+    "token": "1234567890:ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+}
 ```
 
 
@@ -57,7 +47,7 @@ description = ""
 
 [tool.poetry.dependencies]
 python = "^3.10"
-telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v1.2.0" }
+telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v2.0.0" }
 
 [build-system]
 requires = ["poetry-core"]
@@ -141,3 +131,9 @@ tee -a configs/messages.json <<EOF
     telegram.launch_bot()
     ```
     <img src="https://github.com/obervinov/telegram-package/blob/main/doc/inline_keyboard_example.png" width="750" title="inline_keyboard_example">
+
+
+## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
+| Name  | Version |
+| ------------------------ | ----------- |
+| GitHub Actions Templates | [v1.2.8](https://github.com/obervinov/_templates/tree/v1.2.8) |

@@ -9,14 +9,6 @@ test_buttons_list = [
 ]
 
 
-def test_extract_token(telegram_client):
-    """
-    A test to verify the extraction of the telegram token
-    """
-    assert isinstance(telegram_client.token, str)
-    assert telegram_client.token
-
-
 def test_create_inline_markup_3(telegram_client):
     """
     A test to check whether the returned object matches the passed keyboard size: 3

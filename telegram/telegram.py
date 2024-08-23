@@ -1,7 +1,6 @@
 """
 This is an additional implementation compared to the telebot module.
-This module is designed for quick initialization, authorization
-and rendering of various buttons/widgets for telegram bots.
+This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bots.
 """
 import os
 import time
@@ -33,25 +32,27 @@ class TelegramBot:
     This class contains methods for quick initialization, authorization
     and rendering of various buttons/widgets for telegram bots.
 
-    Args:
+    Attributes:
         :param name (str): the name of the bot.
         :param vault (any): Configuration for initializing the Vault client.
             - (object) VaultClient instance for interacting with the Vault API.
             - (dict) Configuration for initializing a VaultClient instance in this class.
-        :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
-        :param messages_config (str): path to the messages configuration file with templates.
+        :param telegram_bot (telebot.TeleBot): the bot instance.
+        :param telegram_types (telebot.types): the types of the telegram bot.
+        :param callback_query (telebot.types.CallbackQuery): the callback query of the telegram bot.
+        :param messages (Messages): the messages instance.
+
+    Methods:
+        :method create_inline_markup: generate inline keyboard button according to the specified parameters.
+        :method send_styled_message: send a styled message to the user or edit an existing message.
+        :method delete_message: delete a message.
+        :method launch_bot: start pulling the message with logging and exceptions.
 
     Raises:
         :raises VaultInstanceNotSet: if the Vault instance is not set.
         :raises BotNameNotSet: if the bot name is not set.
         :raises InvalidTokenConfiguration: if the Telegram token is not set.
         :raises FailedToCreateInstance: if the bot instance cannot be created.
-
-    Returns:
-        None
-
-    Example:
-        >>> bot = TelegramBot()
     """
     def __init__(
         self,
@@ -71,14 +72,22 @@ class TelegramBot:
             :param parse_mode (str): message parser. It can be HTML or MARKDOWN.
             :param messages_config (str): path to the messages configuration file with templates.
 
-        Raises:
-            :raises VaultInstanceNotSet: if the Vault instance is not set.
-            :raises BotNameNotSet: if the bot name is not set.
-            :raises InvalidTokenConfiguration: if the Telegram token is not set.
-            :raises FailedToCreateInstance: if the bot instance cannot be created.
-
-        Returns:
-            None
+        Examples:
+            >>> from telegram import TelegramBot
+            >>> bot = TelegramBot(
+            ...     name='my_bot',
+            ...     vault={
+            ...         'namespace': 'my_namespace',
+            ...         'url': 'http://my_vault_url',
+            ...         'auth': {
+            ...             'method': 'approle',
+            ...             'role_id': 'my_role_id',
+            ...             'secret_id': 'my_secret_id'
+            ...         }
+            ...     },
+            ...     parse_mode='HTML',
+            ...     messages_config='messages.yaml'
+            ... )
         """
         # Extract the bot name from the environment variable or the parameter
         if os.environ.get('TELEGRAM_BOT_NAME', None):
@@ -96,26 +105,23 @@ class TelegramBot:
             self._vault = vault
         elif isinstance(vault, dict):
             self._vault = VaultClient(
-                name=vault.get('name', None),
+                namespace=vault.get('namespace', None),
                 url=vault.get('url', None),
-                approle=vault.get('approle', None)
+                auth=vault.get('auth', None)
             )
         else:
-            log.error('[class.%s] wrong vault parameters in Users(vault=%s), see doc-string', __class__.__name__, vault)
+            log.error('[Telegram]: wrong vault parameters in Users(vault=%s), see doc-string', vault)
             raise VaultInstanceNotSet("Vault instance is not set. Please provide a valid Vault instance as instance or dictionary.")
 
         # Read the token from the Vault
-        self.token = vault.read_secret(
-            path='configuration/telegram',
-            key="token"
-        )
-        if self.token is None:
+        token = vault.kv2engine.read_secret(path='configuration/telegram', key="token")
+        if token is None:
             raise InvalidTokenConfiguration("Telegram token is not set. Please provide a valid token in the Vault.")
 
         try:
             # Create the bot instance
             self.telegram_bot = telebot.TeleBot(
-                token=self.token,
+                token=token,
                 parse_mode=parse_mode,
                 exception_handler=ExceptionHandler()
             )
@@ -227,9 +233,6 @@ class TelegramBot:
         Args:
             chat_id (str): The ID of the chat where the message will be deleted.
             message_id (int): The ID of the message to be deleted.
-
-        Returns:
-            None
         """
         self.telegram_bot.delete_message(
             chat_id=chat_id,
@@ -239,15 +242,6 @@ class TelegramBot:
     def launch_bot(self) -> None:
         """
         A method for start pulling the message with logging and exceptions.
-
-        Args:
-            None
-
-        Returns:
-            None
-
-        Raises:
-            :raises FailedToCreateInstance: if the bot instance cannot be created.
         """
         while True:
             log.info('[Bot]: Starting bot %s...', self.name)
