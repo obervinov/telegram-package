@@ -135,8 +135,10 @@ def fixture_vault_test_data(vault_instance):
 
 
 @pytest.fixture(name="telegram_client", scope='session')
-def fixture_telegram_client(vault_instance):
+def fixture_telegram_client(vault_instance, vault_test_data):
     """Returns telegram client with vault"""
+    _ = vault_test_data
+
     return TelegramBot(
         name='pytests',
         vault=vault_instance,
