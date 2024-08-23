@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## v2.0.0 - 2024-08-23
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.2.0...v2.0.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/42
+#### 💥 Breaking Changes
+* Bump vault-package version to `3.0.0` (this version contains major changes)
+#### 🐛 Bug Fixes
+* Fix security vulnerabilities in dependencies
+#### 🚀 Features
+* Bump workflows version to `1.2.8`
+* Bump vault-package version to `3.0.0`
+* Bump transitive dependencies version
+#### 📚 Documentation
+* Small fixes in documentation
+
+
 ## v1.2.0 - 2024-03-22
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.1.3...v1.2.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/25
