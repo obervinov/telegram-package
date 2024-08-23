@@ -123,17 +123,22 @@ def fixture_vault_instance(vault_url, namespace, prepare_vault):
     )
 
 
-@pytest.fixture(name="telegram_client", scope='session')
-def fixture_telegram_client(vault_instance):
-    """Returns telegram client with vault"""
+@pytest.fixture(name="vault_test_data", scope='session')
+def fixture_vault_test_data(vault_instance):
+    """Returns test data for vault"""
     response = vault_instance.kv2engine.write_secret(
         path='configuration/telegram',
         key='token',
-        value='qwerty123'
+        value='123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11'
     )
     print(f"Prepared test data status: {response}")
+
+
+@pytest.fixture(name="telegram_client", scope='session')
+def fixture_telegram_client(vault_instance):
+    """Returns telegram client with vault"""
     return TelegramBot(
-        name='testapp-1',
+        name='pytests',
         vault=vault_instance,
         messages_config='tests/configs/messages.json'
     )
