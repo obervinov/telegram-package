@@ -241,7 +241,6 @@ class TelegramBot:
             chat_id=chat_id,
             message_id=message_id
         )
-            
 
     def launch_bot(self) -> None:
         """
