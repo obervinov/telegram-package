@@ -22,6 +22,9 @@ class ExceptionHandler(telebot.ExceptionHandler):
             # Just trying to wait for the first bot to be stopped
             log.warning('[Bot]: %s. Trying to wait for the first bot to be stopped...', exception)
             time.sleep(DEFAULT_TIMEOUT)
+        if 'Error code: 400' in str(exception):
+            # https://github.com/obervinov/telegram-package/issues/43
+            log.error('[Bot]: Bad request to the Telegram API: %s', exception)
         else:
             log.error('[Bot]: Error: %s', exception)
             raise FailedToCreateInstance("Failed to create the bot instance.") from exception
@@ -238,6 +241,7 @@ class TelegramBot:
             chat_id=chat_id,
             message_id=message_id
         )
+            
 
     def launch_bot(self) -> None:
         """

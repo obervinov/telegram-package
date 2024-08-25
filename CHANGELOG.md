@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## v2.0.1 - 2024-08-25
+### What's Changed
+**Full Changelog**: https://github.com/obervinov/telegram-package/compare/v2.0.0...v2.0.1 by @obervinov in https://github.com/obervinov/telegram-package/pull/44
+#### 🐛 Bug Fixes
+* [Bug: Attempting to delete a message that does not exist causes the bot to crash ](https://github.com/obervinov/telegram-package/issues/43)
+
+
 ## v2.0.0 - 2024-08-23
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v1.2.0...v2.0.0 by @obervinov in https://github.com/obervinov/telegram-package/pull/42
