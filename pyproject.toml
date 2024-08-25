@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "telegram"
-version = "2.0.0"
+version = "2.0.1"
 description = "This is an additional implementation compared to the telebot module. This module is designed for quick initialization, authorization and rendering of various buttons/widgets for telegram bots."
 authors = ["Bervinov Oleg <bervinov.ob@gmail.com>"]
 maintainers = ["Bervinov Oleg <bervinov.ob@gmail.com>"]
