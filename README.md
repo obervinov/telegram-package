@@ -46,8 +46,8 @@ version = "1.0.0"
 description = ""
 
 [tool.poetry.dependencies]
-python = "^3.10"
-telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v2.0.0" }
+python = "^3.12"
+telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v3.0.0" }
 
 [build-system]
 requires = ["poetry-core"]
@@ -136,4 +136,4 @@ tee -a configs/messages.json <<EOF
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
 | Name  | Version |
 | ------------------------ | ----------- |
-| GitHub Actions Templates | [v1.2.8](https://github.com/obervinov/_templates/tree/v1.2.8) |
+| GitHub Actions Templates | [v2.0.0](https://github.com/obervinov/_templates/tree/v2.0.0) |
