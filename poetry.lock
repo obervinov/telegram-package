@@ -382,13 +382,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pytelegrambotapi"
-version = "4.23.0"
+version = "4.25.0"
 description = "Python Telegram bot api."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pytelegrambotapi-4.23.0-py3-none-any.whl", hash = "sha256:4fd4a64f3d5ec389270cf4f1eacd68f6d25d199e1048b76a1caefcb17fbe214b"},
-    {file = "pytelegrambotapi-4.23.0.tar.gz", hash = "sha256:ced74787cfaf59d959799786f12a401cdb3abeb58dcd25568fc91363ba1cccfa"},
+    {file = "pytelegrambotapi-4.25.0-py3-none-any.whl", hash = "sha256:2ccdbf407671caa09880055f83c1ff7df9a88933b51708b948dac56fc2988829"},
+    {file = "pytelegrambotapi-4.25.0.tar.gz", hash = "sha256:7b59969871cc008b3bc3526efb96d883b7c8eaca2a979e79b1e0269d27bf75e0"},
 ]
 
 [package.dependencies]
