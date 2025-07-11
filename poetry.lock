@@ -250,7 +250,7 @@ plugins = ["setuptools"]
 
 [[package]]
 name = "logger"
-version = "2.0.0"
+version = "2.0.2"
 description = "This is an additional implementation over the logging module. This module is designed for fast initialization and configuration of readable and structured logging."
 optional = false
 python-versions = "^3.12"
@@ -261,8 +261,8 @@ develop = false
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/logger-package.git"
-reference = "v2.0.0"
-resolved_reference = "fad1931aa44e765ffcfa242ce7b7c2fd8c092cc4"
+reference = "v2.0.2"
+resolved_reference = "87e788a7675f08cab68528a20fd6cef9880d0675"
 
 [[package]]
 name = "mccabe"
@@ -278,7 +278,7 @@ files = [
 
 [[package]]
 name = "messages"
-version = "2.0.0"
+version = "2.0.1"
 description = "This package helps to easily and quickly generate beautiful messages for telegram bots using templates described in json."
 optional = false
 python-versions = "^3.12"
@@ -292,8 +292,8 @@ emoji = "^2"
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/messages-package.git"
-reference = "v2.0.0"
-resolved_reference = "6f521b1da56e2d5861f4986a58ff2a11d2ee574c"
+reference = "v2.0.1"
+resolved_reference = "8b6fcda3b2cdd824e28988d58cee9bb810f97877"
 
 [[package]]
 name = "packaging"
@@ -506,7 +506,7 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "vault"
-version = "4.0.1"
+version = "4.0.2"
 description = "This is an additional implementation compared to the hvac module. The main purpose of which is to simplify the use and interaction with vault for my standard projects. This module contains a set of methods for working with secrets and database engines in vault."
 optional = false
 python-versions = "^3.12"
@@ -516,16 +516,16 @@ develop = false
 
 [package.dependencies]
 hvac = "^2"
-logger = {git = "https://github.com/obervinov/logger-package.git", tag = "v2.0.0"}
+logger = {git = "https://github.com/obervinov/logger-package.git", tag = "v2.0.2"}
 requests = "^2"
 
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/vault-package.git"
-reference = "v4.0.1"
-resolved_reference = "fcd351ed68fbf03fc92cbb1f6b25f5bc40bf2d5e"
+reference = "v4.0.2"
+resolved_reference = "243bfb5309213f70bd17cde1d2eeadbc464c783e"
 
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "c0073b4a448d453b73f2ceccdf40c83ac822e0f8d8ea22681bcd7e9b0f0eb481"
+content-hash = "8cb453721d47d06d06d8cd509e1c300e93f4d5f73458d41c16fcb3caf8754a05"

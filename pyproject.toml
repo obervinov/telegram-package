@@ -21,7 +21,7 @@ python = "^3.12"
 pyTelegramBotAPI = "^4"
 logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v2.0.2" }
 vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v4.0.2" }
-messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v2.0.1s" }
+messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v2.0.1" }
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3"
