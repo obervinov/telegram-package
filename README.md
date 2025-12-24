@@ -47,7 +47,7 @@ description = ""
 
 [tool.poetry.dependencies]
 python = "^3.12"
-telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v3.0.2" }
+telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v3.0.3" }
 
 [build-system]
 requires = ["poetry-core"]

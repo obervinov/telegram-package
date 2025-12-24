@@ -1,14 +1,17 @@
 ---
-  name: Release
-  
-  on:
-    pull_request:
-      branches:
-        - main
-      types:
-        - closed
-  
-  jobs:  
-    release:
-      uses: obervinov/_templates/.github/workflows/release.yaml@v2.1.1
-  
+name: Release
+
+permissions:
+  contents: write
+  pull-requests: read
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:  
+  release:
+    uses: obervinov/_templates/.github/workflows/release.yaml@v2.1.1
