@@ -7,6 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### What's Changed
 #### 🐛 Bug Fixes
 * `.github/workflows`: move the reusable workflows to `obervinov/_templates@v4.0.0`. Node 20 is removed from the Actions runner on 2026-09-23, and the pinned templates still called `actions/create-release` (`runs.using: node12`, archived) along with a set of `node20` actions — releases and checks in this repository would stop running.
+#### 📚 Documentation
+* `README.md`: fix the usage examples against the actual API — `TelegramBot`'s first positional argument is `name`, so `TelegramBot(vault_client)` raised `VaultInstanceNotSet`, and `create_inline_markup` is a `TelegramBot` method rather than a `telebot.TeleBot` one. Also terminates the messages-template heredoc and aligns the template alias with the one the example renders.
 
 
 ## v3.0.4 - 2025-12-24
