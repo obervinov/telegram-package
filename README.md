@@ -41,7 +41,7 @@ An example of a policy with all the necessary rights and a description can be fo
 ```bash
 tee -a pyproject.toml <<EOF
 [tool.poetry]
-name = myproject"
+name = "myproject"
 version = "1.0.0"
 description = ""
 
@@ -68,12 +68,13 @@ poetry install
 tee -a configs/messages.json <<EOF
 {
     "templates": {
-        "test_message": {
+        "hello_message": {
             "text": "Hi, <b>{0}</b>! {1}\nAccess for your account - allowed {2}",
             "args": ["username", ":raised_hand:", ":unlocked:"]
         }
     }
 }
+EOF
 ```
 
 - Simple usage
@@ -82,7 +83,7 @@ tee -a configs/messages.json <<EOF
     from telegram import TelegramBot
 
     # init class objects
-    telegram = TelegramBot(vault_client)
+    telegram = TelegramBot(vault=vault_client)
     bot = telegram.telegram_bot
 
     # decorator
@@ -96,8 +97,8 @@ tee -a configs/messages.json <<EOF
                     'username': message.from_user.first_name
                 }
             }
-        )  
-    
+        )
+
     # run bot pulling
     telegram.launch_bot()
     ```
@@ -108,12 +109,13 @@ tee -a configs/messages.json <<EOF
     from telegram import TelegramBot
 
     # init class objects
-    telegram_bot = TelegramBot(vault_client).telegram_bot
+    telegram = TelegramBot(vault=vault_client)
+    bot = telegram.telegram_bot
 
     # decorator
-    @telegram_bot.message_handler(commands=['start'])
+    @bot.message_handler(commands=['start'])
     def start_message(message):
-        markup = telegram_bot.telegram.create_inline_markup(
+        markup = telegram.create_inline_markup(
             [
                 'Jan', 'Feb', 'Mar', 'Apr',
                 'May', 'June', 'July', 'Aug',
@@ -121,9 +123,9 @@ tee -a configs/messages.json <<EOF
             ],
             4
         )
-        telegram_bot.send_message(
+        bot.send_message(
             message.chat.id,
-            f"\U0001F4C5 Select month for the creating report",
+            "\U0001F4C5 Select month for the creating report",
             reply_markup=markup
         )
 
