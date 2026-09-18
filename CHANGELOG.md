@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## v3.0.5 - 2026-09-18
+### What's Changed
+#### 🐛 Bug Fixes
+* `.github/workflows`: move the reusable workflows to `obervinov/_templates@v4.0.0`. Node 20 is removed from the Actions runner on 2026-09-23, and the pinned templates still called `actions/create-release` (`runs.using: node12`, archived) along with a set of `node20` actions — releases and checks in this repository would stop running.
+#### 📚 Documentation
+* `README.md`: fix the usage examples against the actual API — `TelegramBot`'s first positional argument is `name`, so `TelegramBot(vault_client)` raised `VaultInstanceNotSet`, and `create_inline_markup` is a `TelegramBot` method rather than a `telebot.TeleBot` one. Also terminates the messages-template heredoc and aligns the template alias with the one the example renders.
+* `README.md`: replace the hand-maintained GitHub Actions Templates table with a badge that reads the pinned version out of `.github/workflows/pr.yaml` — the table went stale on every template bump because nothing kept it in sync.
+
+
 ## v3.0.4 - 2025-12-24
 ### What's Changed
 **Full Changelog**: https://github.com/obervinov/telegram-package/compare/v3.0.3...v3.0.4 by @obervinov in https://github.com/obervinov/telegram-package/pull/78

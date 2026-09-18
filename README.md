@@ -41,13 +41,13 @@ An example of a policy with all the necessary rights and a description can be fo
 ```bash
 tee -a pyproject.toml <<EOF
 [tool.poetry]
-name = myproject"
+name = "myproject"
 version = "1.0.0"
 description = ""
 
 [tool.poetry.dependencies]
 python = "^3.12"
-telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v3.0.3" }
+telegram = { git = "https://github.com/obervinov/telegram-package.git", tag = "v3.0.5" }
 
 [build-system]
 requires = ["poetry-core"]
@@ -68,12 +68,13 @@ poetry install
 tee -a configs/messages.json <<EOF
 {
     "templates": {
-        "test_message": {
+        "hello_message": {
             "text": "Hi, <b>{0}</b>! {1}\nAccess for your account - allowed {2}",
             "args": ["username", ":raised_hand:", ":unlocked:"]
         }
     }
 }
+EOF
 ```
 
 - Simple usage
@@ -82,7 +83,7 @@ tee -a configs/messages.json <<EOF
     from telegram import TelegramBot
 
     # init class objects
-    telegram = TelegramBot(vault_client)
+    telegram = TelegramBot(vault=vault_client)
     bot = telegram.telegram_bot
 
     # decorator
@@ -96,8 +97,8 @@ tee -a configs/messages.json <<EOF
                     'username': message.from_user.first_name
                 }
             }
-        )  
-    
+        )
+
     # run bot pulling
     telegram.launch_bot()
     ```
@@ -108,12 +109,13 @@ tee -a configs/messages.json <<EOF
     from telegram import TelegramBot
 
     # init class objects
-    telegram_bot = TelegramBot(vault_client).telegram_bot
+    telegram = TelegramBot(vault=vault_client)
+    bot = telegram.telegram_bot
 
     # decorator
-    @telegram_bot.message_handler(commands=['start'])
+    @bot.message_handler(commands=['start'])
     def start_message(message):
-        markup = telegram_bot.telegram.create_inline_markup(
+        markup = telegram.create_inline_markup(
             [
                 'Jan', 'Feb', 'Mar', 'Apr',
                 'May', 'June', 'July', 'Aug',
@@ -121,9 +123,9 @@ tee -a configs/messages.json <<EOF
             ],
             4
         )
-        telegram_bot.send_message(
+        bot.send_message(
             message.chat.id,
-            f"\U0001F4C5 Select month for the creating report",
+            "\U0001F4C5 Select month for the creating report",
             reply_markup=markup
         )
 
@@ -134,6 +136,4 @@ tee -a configs/messages.json <<EOF
 
 
 ## <img src="https://github.com/obervinov/_templates/blob/main/icons/github-actions.png" width="25" title="github-actions"> GitHub Actions
-| Name  | Version |
-| ------------------------ | ----------- |
-| GitHub Actions Templates | [v2.1.1](https://github.com/obervinov/_templates/tree/v2.1.1) |
+[![GitHub Actions Templates](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobervinov%2Ftelegram-package%2FHEAD%2F.github%2Fworkflows%2Fpr.yaml&search=pr.yaml%40%28v%5B0-9.%5D%2B%29&replace=%241&label=_templates&color=blue&logo=githubactions&logoColor=white)](https://github.com/obervinov/_templates)
