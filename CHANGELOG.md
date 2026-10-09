@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 * `README.md`: pin the install snippet to the major tag (`tag = "v3"`) instead of the exact release. The release workflow now moves `v3` to each new `v3.x.x`, so the line no longer has to be edited on every release — which is how it kept going stale. An exact pin still works against the per-release tag.
 #### 🐛 Bug Fixes
 * `.github/workflows`: move to `obervinov/_templates@v4.1.0`, whose release template points the major tag at each new release.
+* `pyproject.toml`: `vault` git pin `v4.0.3` → `v4.0.4` and `messages` `v2.0.2` → `v2.0.3`. `logger` stays at `v2.0.4` on purpose: it has to match the tag `vault` v4.0.4 itself pins, or poetry cannot resolve two refs of the same package. `poetry.lock` refreshed — `pytelegrambotapi` 4.29.1 → 4.37.0 (which now pulls `aiohttp` and its dependencies), `requests` 2.34.2, `urllib3` 2.8.0, dev `pylint` 4.1.2, `pytest` 9.1.1. Supersedes the open dependabot PRs.
 
 
 ## v3.0.5 - 2026-09-18

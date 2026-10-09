@@ -20,8 +20,8 @@ include = ["CHANGELOG.md"]
 python = "^3.12"
 pyTelegramBotAPI = "^4"
 logger = { git = "https://github.com/obervinov/logger-package.git", tag = "v2.0.4" }
-vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v4.0.3" }
-messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v2.0.2" }
+vault  = { git = "https://github.com/obervinov/vault-package.git", tag = "v4.0.4" }
+messages = { git = "https://github.com/obervinov/messages-package.git", tag = "v2.0.3" }
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^4"
