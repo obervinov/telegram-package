@@ -731,7 +731,7 @@ colors = ["colorama"]
 
 [[package]]
 name = "logger"
-version = "2.0.4"
+version = "2.0.7"
 description = "This is an additional implementation over the logging module. This module is designed for fast initialization and configuration of readable and structured logging."
 optional = false
 python-versions = "^3.12"
@@ -742,8 +742,8 @@ develop = false
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/logger-package.git"
-reference = "v2.0.4"
-resolved_reference = "85857e7fe783f11c328d025f53431796022a2abe"
+reference = "v2"
+resolved_reference = "b80c00d238779eec986a136e439cfdba6b566e58"
 
 [[package]]
 name = "mccabe"
@@ -759,7 +759,7 @@ files = [
 
 [[package]]
 name = "messages"
-version = "2.0.3"
+version = "2.0.4"
 description = "This package helps to easily and quickly generate beautiful messages for telegram bots using templates described in json."
 optional = false
 python-versions = "^3.12"
@@ -773,8 +773,8 @@ emoji = "^2"
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/messages-package.git"
-reference = "v2.0.3"
-resolved_reference = "4ff7eb0d4446945dd1cf33fe19c240b606032a5c"
+reference = "v2"
+resolved_reference = "37534ec6b99bf9b1f25cb89d370e0065958a541e"
 
 [[package]]
 name = "multidict"
@@ -1336,7 +1336,7 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 
 [[package]]
 name = "vault"
-version = "4.0.4"
+version = "4.0.6"
 description = "The main goal of the implementation is to simplify the use and interaction with Vault Server for my standard python projects. This module contains a set of methods for working with secrets and database engines in Vault."
 optional = false
 python-versions = "^3.12"
@@ -1346,14 +1346,14 @@ develop = false
 
 [package.dependencies]
 hvac = "^2"
-logger = {git = "https://github.com/obervinov/logger-package.git", tag = "v2.0.4"}
+logger = {git = "https://github.com/obervinov/logger-package.git", tag = "v2"}
 requests = "^2"
 
 [package.source]
 type = "git"
 url = "https://github.com/obervinov/vault-package.git"
-reference = "v4.0.4"
-resolved_reference = "1354cdef8e3b8217444cf77d3de15715cb90a640"
+reference = "v4"
+resolved_reference = "097aa1c0fc16fdec9ce30afc44fa7f56c30f604a"
 
 [[package]]
 name = "yarl"
@@ -1511,4 +1511,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "8b132b65de0decb1ddfc814c8d4e4ca77e941fe0b5a8277ed9794898658b8e14"
+content-hash = "c1f1222dfc9bdf660bbc88235938919f416fd11d0a002985afa8cb695e4579e0"
